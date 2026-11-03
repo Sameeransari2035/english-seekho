@@ -49,11 +49,11 @@ authForm.addEventListener('submit', function (e) {
   function waitForFirebaseAuth() {
     if (window.firebaseAuth) {
       if (isLoginMode) {
-        // LOGIN
+              // LOGIN
         window.firebaseSignIn(window.firebaseAuth, email, password)
           .then((userCredential) => {
             localStorage.setItem('currentUser', userCredential.user.email);
-            window.location.href = 'quiz.html';
+            window.location.href = 'dashboard.html'; // 👈 Yahan change karo
           })
           .catch((error) => {
             showError(error.message);
@@ -63,7 +63,7 @@ authForm.addEventListener('submit', function (e) {
         window.firebaseCreateUser(window.firebaseAuth, email, password)
           .then((userCredential) => {
             localStorage.setItem('currentUser', userCredential.user.email);
-            window.location.href = 'quiz.html';
+            window.location.href = 'dashboard.html'; // 👈 Yahan bhi change karo
           })
           .catch((error) => {
             showError(error.message);

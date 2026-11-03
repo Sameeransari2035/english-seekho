@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speaking Practice - English Seekho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/dark-mode.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📚 English Seekho</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="grammar.html">Grammar</a></li>
+      <li><a href="vocabulary.html">Vocabulary</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header" style="background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);">
+    <h1>🎤 Speaking Practice</h1>
+    <p>Mic par bol kar apni English pronunciation sudharein!</p>
+  </header>
+
+  <!-- Speaking Container -->
+  <main class="speaking-container">
+    <div class="speaking-card">
+      
+      <div class="sentence-box">
+        <p style="color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Is sentence ko bolein:</p>
+        <h2 id="targetSentence">Loading...</h2>
+        <button class="audio-btn" id="listenBtn" style="margin-top: 1rem;" title="Sunne ke liye click karein">🔊 Sunne ke liye Click Karein</button>
+      </div>
+
+      <div class="mic-section">
+        <button id="micBtn" class="mic-button">🎤</button>
+        <p id="micStatus" style="margin-top: 1rem; font-weight: 600; color: var(--gray);">Bolne ke liye mic button dabayein</p>
+      </div>
+
+      <div id="resultBox" class="result-box" style="display: none;"></div>
+
+      <div class="speaking-actions">
+        <button class="btn btn-primary" id="nextBtn" style="display: none;">Next Sentence →</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 English Seekho | Made with ❤️</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/speaking.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/nav-updater.js"></script>
+</body>
+</html>

@@ -36,6 +36,96 @@ const quizQuestions = [
     options: ["go", "goes", "going", "gone"],
     correct: 1,
     explanation: "He/She/It ke saath verb mein 's' ya 'es' lagta hai — 'goes'."
+  }  ,
+  {
+    question: "Sahi verb chuno: 'She ___ a beautiful song.'",
+    options: ["sing", "sings", "singing", "sang"],
+    correct: 1,
+    explanation: "Present tense mein He/She/It ke saath verb mein 's' lagta hai."
+  },
+  {
+    question: "Sahi past tense chuno: 'I ___ to the market yesterday.'",
+    options: ["go", "goes", "went", "gone"],
+    correct: 2,
+    explanation: "'Yesterday' past time batata hai, isliye 'went' lagega."
+  },
+  {
+    question: "Sahi preposition chuno: 'The cat is ___ the table.'",
+    options: ["in", "on", "at", "for"],
+    correct: 1,
+    explanation: "Cheez ke upar hone ke liye 'on' use hota hai."
+  },
+  {
+    question: "Inme se kaunsa adjective hai?",
+    options: ["Run", "Beautiful", "Quickly", "Happiness"],
+    correct: 1,
+    explanation: "Beautiful ek adjective hai."
+  },
+  {
+    question: "Sahi future tense chuno: 'I ___ help you tomorrow.'",
+    options: ["will", "am", "did", "was"],
+    correct: 0,
+    explanation: "Future ke liye 'will' use hota hai."
+  }  ,
+  {
+    question: "Sahi conjunction chuno: 'I like tea ___ coffee.'",
+    options: ["but", "and", "because", "or"],
+    correct: 1,
+    explanation: "Do cheezon ko jodne ke liye 'and' use hota hai."
+  },
+  {
+    question: "Sahi conjunction chuno: 'He is rich ___ not happy.'",
+    options: ["and", "but", "so", "because"],
+    correct: 1,
+    explanation: "Ulta ya virudh baat batane ke liye 'but' use hota hai."
+  },
+  {
+    question: "Inme se interjection kaunsa hai?",
+    options: ["Run", "Wow!", "Beautiful", "Quickly"],
+    correct: 1,
+    explanation: "Wow! ek interjection hai jo achanak khushi vyakt karta hai."
+  },
+  {
+    question: "Passive voice chuno:",
+    options: ["Ram eats an apple.", "An apple is eaten by Ram.", "Ram is eating an apple.", "Ram will eat an apple."],
+    correct: 1,
+    explanation: "Passive voice mein object pehle aata hai aur 'by' use hota hai."
+  },
+  {
+    question: "Indirect speech chuno:",
+    options: ["He said, 'I am happy.'", "He said that he was happy.", "He says, 'I am happy.'", "He said, I am happy."],
+    correct: 1,
+    explanation: "Indirect speech mein quotes nahi hote aur tense change hota hai."
+  },
+  {
+    question: "Sentence ke end mein kya lagta hai?",
+    options: ["Comma (,)", "Period (.)", "Exclamation (!)", "Question Mark (?)"],
+    correct: 1,
+    explanation: "Statement ke end mein period (.) lagta hai."
+  },
+  {
+    question: "Sahi punctuation chuno: 'How are you___'",
+    options: [".", ",", "?", "!"],
+    correct: 2,
+    explanation: "Sawaal ke end mein question mark (?) lagta hai."
+  },
+  {
+    question: "Sahi article chuno: 'He is ___ honest man.'",
+    options: ["a", "an", "the", "no article"],
+    correct: 1,
+    explanation: "'Honest' vowel sound (o) se shuru hota hai, isliye 'an' lagega."
+  },
+  {
+    question: "Sahi preposition chuno: 'She is good ___ mathematics.'",
+    options: ["in", "at", "on", "for"],
+    correct: 1,
+    explanation: "'Good at' ek fixed phrase hai."
+  },
+  {
+    question: "Sahi verb chuno: 'He ___ his homework before dinner.'",
+    options: ["do", "does", "did", "done"],
+    correct: 2,
+    explanation: "Past tense mein 'did' use hota hai."
   }
 ];
 

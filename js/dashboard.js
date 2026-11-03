@@ -56,6 +56,7 @@ function loadDashboard() {
 }
 
 function calculateRank(currentEmail) {
+  // Firebase ready hone ka wait karo
   if (!window.firebaseDB) {
     setTimeout(() => calculateRank(currentEmail), 200);
     return;
@@ -71,17 +72,22 @@ function calculateRank(currentEmail) {
       return;
     }
 
-    const leaderboard = Object.values(data).sort((a, b) => (b.points || 0) - (a.points || 0));
-    const rank = leaderboard.findIndex(u => u.email === currentEmail) + 1;
-    
-    if (rank > 0) {
-      document.getElementById('dashRank').textContent = '#' + rank;
-    } else {
-      document.getElementById('dashRank').textContent = '-';
+    // Data ko array mein convert karo aur sort karo
+    const usersArray = Object.values(data);
+    usersArray.sort((a, b) => (b.points || 0) - (a.points || 0));
+
+    // Current user ki rank dhoondo
+    let rank = '-';
+    for (let i = 0; i < usersArray.length; i++) {
+      if (usersArray[i].email === currentEmail) {
+        rank = i + 1;
+        break;
+      }
     }
+    
+    document.getElementById('dashRank').textContent = rank !== '-' ? '#' + rank : '-';
   });
 }
-
 function logoutUser() {
   if (confirm("Kya aap sach mein logout karna chahte hain?")) {
     localStorage.removeItem('currentUser');

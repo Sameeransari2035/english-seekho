@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+    <script src="js/dark-mode.js"></script>
 </head>
 
 <body>
@@ -18,14 +19,23 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">📚 English Seekho</div>
-    <ul class="nav-links">
+     <!-- Ye button add karo -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+   <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="grammar.html">Grammar</a></li>
+      <li><a href="vocabulary.html">Vocabulary</a></li>
       <li><a href="quiz.html">Quiz</a></li>
       <li><a href="game.html">Game</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="reading.html">Reading</a></li>
       <li><a href="leaderboard.html">Leaderboard</a></li>
       <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="login.html">Login</a></li>
+    
     </ul>
   </nav>
 
@@ -79,6 +89,116 @@
         </div>
       </a>
 
+      <!-- Lesson 5 -->
+      <a href="lesson.html?lesson=5" class="lesson-card">
+        <div class="lesson-number">5</div>
+        <div class="lesson-info">
+          <h3>Present Tense</h3>
+          <p>Aaj ke samay ke baare mein bolein.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
+      <!-- Lesson 6 -->
+      <a href="lesson.html?lesson=6" class="lesson-card">
+        <div class="lesson-number">6</div>
+        <div class="lesson-info">
+          <h3>Past Tense</h3>
+          <p>Beete hue samay ke baare mein bolein.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
+      <!-- Lesson 7 -->
+      <a href="lesson.html?lesson=7" class="lesson-card">
+        <div class="lesson-number">7</div>
+        <div class="lesson-info">
+          <h3>Future Tense</h3>
+          <p>Aane wale samay ke baare mein bolein.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
+      <!-- Lesson 8 -->
+      <a href="lesson.html?lesson=8" class="lesson-card">
+        <div class="lesson-number">8</div>
+        <div class="lesson-info">
+          <h3>Prepositions</h3>
+          <p>In, On, At ka sahi use.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
+      <!-- Lesson 9 -->
+      <a href="lesson.html?lesson=9" class="lesson-card">
+        <div class="lesson-number">9</div>
+        <div class="lesson-info">
+          <h3>Adjectives</h3>
+          <p>Kisi cheez ki visheshta batana.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
+      <!-- Lesson 10 -->
+      <a href="lesson.html?lesson=10" class="lesson-card">
+        <div class="lesson-number">10</div>
+        <div class="lesson-info">
+          <h3>Adverbs</h3>
+          <p>Kaam kaise hota hai, ye batana.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
+      <!-- Lesson 11 -->
+      <a href="lesson.html?lesson=11" class="lesson-card">
+        <div class="lesson-number">11</div>
+        <div class="lesson-info">
+          <h3>Conjunctions</h3>
+          <p>Do sentences ko jodna.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
+      <!-- Lesson 12 -->
+      <a href="lesson.html?lesson=12" class="lesson-card">
+        <div class="lesson-number">12</div>
+        <div class="lesson-info">
+          <h3>Interjections</h3>
+          <p>Achanak bhaav vyakt karna.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
+      <!-- Lesson 13 -->
+      <a href="lesson.html?lesson=13" class="lesson-card">
+        <div class="lesson-number">13</div>
+        <div class="lesson-info">
+          <h3>Active & Passive Voice</h3>
+          <p>Kaam karne aur hone ka farq.</p>
+          <span class="lesson-tag">Intermediate</span>
+        </div>
+      </a>
+
+      <!-- Lesson 14 -->
+      <a href="lesson.html?lesson=14" class="lesson-card">
+        <div class="lesson-number">14</div>
+        <div class="lesson-info">
+          <h3>Direct & Indirect Speech</h3>
+          <p>Kisi ki baat batane ke tarike.</p>
+          <span class="lesson-tag">Intermediate</span>
+        </div>
+      </a>
+
+      <!-- Lesson 15 -->
+      <a href="lesson.html?lesson=15" class="lesson-card">
+        <div class="lesson-number">15</div>
+        <div class="lesson-info">
+          <h3>Punctuation</h3>
+          <p>Viraam chinh ka sahi use.</p>
+          <span class="lesson-tag">Beginner</span>
+        </div>
+      </a>
+
     </div>
   </section>
 
@@ -86,7 +206,9 @@
   <footer class="footer">
     <p>© 2026 English Seekho | Made with ❤️</p>
   </footer>
-
+   
+<script src="js/navbar.js"></script>
+ <script src="js/nav-updater.js"></script>
 </body>
 
 </html>

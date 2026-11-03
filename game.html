@@ -1,78 +1,95 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Scramble - English Seekho</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Scramble - English Seekho</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+      <script src="js/dark-mode.js"></script>
 </head>
+
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">📚 English Seekho</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="grammar.html">Grammar</a></li>
-      <li><a href="quiz.html">Quiz</a></li>
-      <li><a href="game.html">Game</a></li>
-      <li><a href="leaderboard.html">Leaderboard</a></li>
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="login.html">Login</a></li>
-    </ul>
-  </nav>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">📚 English Seekho</div>
+        <!-- Ye button add karo -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="grammar.html">Grammar</a></li>
+            <li><a href="vocabulary.html">Vocabulary</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><a href="speaking.html">Speaking</a></li>
+            <li><a href="reading.html">Reading</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        
+        </ul>
+    </nav>
 
-  <!-- Page Header -->
-  <header class="page-header">
-    <h1>🎮 Word Scramble</h1>
-    <p>Ulte-pulte letters ko sahi karke word banao!</p>
-  </header>
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>🎮 Word Scramble</h1>
+        <p>Ulte-pulte letters ko sahi karke word banao!</p>
+    </header>
 
-  <!-- Game Container -->
-  <main class="game-container">
-    <div class="game-card">
-      
-      <!-- Game Stats -->
-      <div class="game-stats">
-        <span>⭐ Score: <strong id="gameScore">0</strong></span>
-        <span>❤️ Lives: <strong id="gameLives">3</strong></span>
-      </div>
+    <!-- Game Container -->
+    <main class="game-container">
+        <div class="game-card">
 
-      <!-- Hint -->
-      <div class="hint-box" id="hintBox">
-        <!-- Hint yahan aayega -->
-      </div>
+            <!-- Game Stats -->
+            <div class="game-stats">
+                <span>⭐ Score: <strong id="gameScore">0</strong></span>
+                <span>❤️ Lives: <strong id="gameLives">3</strong></span>
+            </div>
 
-      <!-- Scrambled Word -->
-      <h2 class="scrambled-word" id="scrambledWord">L O A D I N G</h2>
+            <!-- Hint -->
+            <div class="hint-box" id="hintBox">
+                <!-- Hint yahan aayega -->
+            </div>
 
-      <!-- Input -->
-      <input type="text" id="userInput" class="game-input" placeholder="Yahan sahi word likhein..." autocomplete="off" autocapitalize="off" spellcheck="false">
+            <!-- Scrambled Word -->
+            <h2 class="scrambled-word" id="scrambledWord">L O A D I N G</h2>
 
-      <!-- Buttons -->
-      <div class="game-actions">
-        <button class="btn btn-primary" id="submitBtn">Check Karo</button>
-        <button class="btn btn-secondary" id="skipBtn">Skip / Next</button>
-      </div>
+            <!-- Input -->
+            <input type="text" id="userInput" class="game-input" placeholder="Yahan sahi word likhein..."
+                autocomplete="off" autocapitalize="off" spellcheck="false">
 
-      <!-- Feedback -->
-      <div class="game-feedback" id="gameFeedback"></div>
+            <!-- Buttons -->
+            <div class="game-actions">
+                <button class="btn btn-primary" id="submitBtn">Check Karo</button>
+                <button class="btn btn-secondary" id="skipBtn">Skip / Next</button>
+            </div>
 
-    </div>
-  </main>
+            <!-- Feedback -->
+            <div class="game-feedback" id="gameFeedback"></div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2025 English Seekho | Made with ❤️</p>
-  </footer>
+        </div>
+    </main>
 
-  <!-- Game JS -->
-  <script src="js/game.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 English Seekho | Made with ❤️</p>
+    </footer>
+
+    <!-- Game JS -->
+    <script src="js/game.js"></script>
+<script src="js/navbar.js"></script> 
+ <script src="js/nav-updater.js"></script>   
 
 </body>
+
 </html>

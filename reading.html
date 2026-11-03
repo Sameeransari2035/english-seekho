@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Practice - English Seekho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/dark-mode.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📚 English Seekho</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="grammar.html">Grammar</a></li>
+      <li><a href="vocabulary.html">Vocabulary</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);">
+    <h1>📖 Reading Practice</h1>
+    <p>Paragraph padho aur apni understanding test karo!</p>
+  </header>
+
+  <!-- Reading Container -->
+  <main class="reading-container">
+    <div class="reading-card" id="readingCard">
+      
+      <h2 id="storyTitle">Loading...</h2>
+      
+      <div id="storyText" class="story-text"></div>
+
+      <div id="questionsSection" style="display: none;">
+        <hr style="margin: 2rem 0; border-color: var(--gray); opacity: 0.2;">
+        <h3 style="margin-bottom: 1rem; color: var(--primary-dark);">Comprehension Questions:</h3>
+        <div id="questionsContainer"></div>
+        <button class="btn btn-primary" id="submitAnswersBtn" style="width: 100%; margin-top: 1.5rem;">Answers Check Karein</button>
+      </div>
+
+      <div id="resultSection" style="display: none; text-align: center; margin-top: 2rem;">
+        <h3 id="resultTitle" style="font-size: 1.5rem; margin-bottom: 1rem;"></h3>
+        <p id="resultMsg" style="margin-bottom: 2rem;"></p>
+        <button class="btn btn-primary" onclick="loadNewStory()">🔄 Next Story</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 English Seekho | Made with ❤️</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/reading.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/nav-updater.js"></script>
+</body>
+</html>
