@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Scramble - English Seekho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📚 English Seekho</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="grammar.html">Grammar</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1>🎮 Word Scramble</h1>
+    <p>Ulte-pulte letters ko sahi karke word banao!</p>
+  </header>
+
+  <!-- Game Container -->
+  <main class="game-container">
+    <div class="game-card">
+      
+      <!-- Game Stats -->
+      <div class="game-stats">
+        <span>⭐ Score: <strong id="gameScore">0</strong></span>
+        <span>❤️ Lives: <strong id="gameLives">3</strong></span>
+      </div>
+
+      <!-- Hint -->
+      <div class="hint-box" id="hintBox">
+        <!-- Hint yahan aayega -->
+      </div>
+
+      <!-- Scrambled Word -->
+      <h2 class="scrambled-word" id="scrambledWord">L O A D I N G</h2>
+
+      <!-- Input -->
+      <input type="text" id="userInput" class="game-input" placeholder="Yahan sahi word likhein..." autocomplete="off" autocapitalize="off" spellcheck="false">
+
+      <!-- Buttons -->
+      <div class="game-actions">
+        <button class="btn btn-primary" id="submitBtn">Check Karo</button>
+        <button class="btn btn-secondary" id="skipBtn">Skip / Next</button>
+      </div>
+
+      <!-- Feedback -->
+      <div class="game-feedback" id="gameFeedback"></div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 English Seekho | Made with ❤️</p>
+  </footer>
+
+  <!-- Game JS -->
+  <script src="js/game.js"></script>
+
+</body>
+</html>

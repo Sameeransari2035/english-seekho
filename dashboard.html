@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - English Seekho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Firebase SDK (CDN) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
+      authDomain: "english-seekho-v2.firebaseapp.com",
+      databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
+      projectId: "english-seekho-v2",
+      storageBucket: "english-seekho-v2.firebasestorage.app",
+      messagingSenderId: "393175002297",
+      appId: "1:393175002297:web:8ac546459c7fa803917f68"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.firebaseDB = db;
+    window.firebaseRef = ref;
+    window.firebaseOnValue = onValue;
+  </script>
+</head>
+<body>
+
+ <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📚 English Seekho</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="grammar.html">Grammar</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <h1>📊 Tumhara Dashboard</h1>
+    <p>Apni progress dekho aur aage badho!</p>
+  </header>
+
+  <main class="dashboard-container">
+
+    <section class="dash-stats">
+      <div class="dash-stat-card">
+        <div class="dash-icon">⭐</div>
+        <div class="dash-number" id="dashPoints">0</div>
+        <div class="dash-label">Total Points</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-icon">🎯</div>
+        <div class="dash-number" id="dashQuizCount">0</div>
+        <div class="dash-label">Quiz Attempts</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-icon">🏆</div>
+        <div class="dash-number" id="dashRank">-</div>
+        <div class="dash-label">Your Rank</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-icon">📧</div>
+        <div class="dash-number" id="dashEmail" style="font-size: 1rem; word-break: break-all;">-</div>
+        <div class="dash-label">Logged In As</div>
+      </div>
+    </section>
+
+    <section class="dash-section">
+      <h2>🎖️ Tumhara Level</h2>
+      <div class="level-box">
+        <div class="level-info">
+          <span class="level-name" id="levelName">Beginner</span>
+          <span class="level-points" id="levelPoints">0 / 50 points</span>
+        </div>
+        <div class="level-bar">
+          <div class="level-fill" id="levelFill"></div>
+        </div>
+        <p class="level-hint" id="levelHint">Agle level tak 50 points aur chahiye!</p>
+      </div>
+    </section>
+
+    <section class="dash-section reset-section">
+      <button class="btn-reset" onclick="logoutUser()">🚪 Logout</button>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 English Seekho | Made with ❤️</p>
+  </footer>
+
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>
