@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Challenge - English Seekho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+    <script src="js/dark-mode.js"></script>
+  
+  <!-- Firebase SDK (CDN) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
+      authDomain: "english-seekho-v2.firebaseapp.com",
+      databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
+      projectId: "english-seekho-v2",
+      storageBucket: "english-seekho-v2.firebasestorage.app",
+      messagingSenderId: "393175002297",
+      appId: "1:393175002297:web:8ac546459c7fa803917f68"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.firebaseDB = db;
+    window.firebaseRef = ref;
+    window.firebaseSet = set;
+    window.firebaseGet = get;
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📚 English Seekho</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="grammar.html">Grammar</a></li>
+      <li><a href="vocabulary.html">Vocabulary</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="challenge.html">Daily Challenge</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);">
+    <h1>🔥 Daily Challenge</h1>
+    <p>Rozana aao, 5 tough sawaal solve karo aur Double Points kamao!</p>
+  </header>
+
+  <!-- Challenge Container -->
+  <main class="quiz-container">
+    
+    <!-- Start Screen -->
+    <div id="challengeStart" class="quiz-card" style="text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 5rem; margin-bottom: 1rem;">🏆</div>
+      <h2>Aaj Ka Challenge</h2>
+      <p style="color: var(--gray); margin-bottom: 2rem;">Aaj ka challenge khelne ke liye neeche button dabayein. Jeetne par aapko <strong>Double Points</strong> milenge!</p>
+      <button id="startChallengeBtn" class="btn btn-primary" style="width: 100%; font-size: 1.1rem;">🚀 Challenge Shuru Karein</button>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="challengeQuiz" style="display: none;">
+      <div class="quiz-progress">
+        <div class="progress-info">
+          <span>Question <span id="currentQ">1</span> / <span id="totalQ">5</span></span>
+          <span>⭐ <span id="scoreDisplay">0</span> pts</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <h2 id="questionText">Loading...</h2>
+        <div class="options" id="optionsContainer"></div>
+        <div class="feedback" id="feedback"></div>
+        <button class="btn btn-primary" id="nextBtn" style="display:none;">Next →</button>
+      </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="challengeResult" class="result-card" style="display: none;">
+      <div class="result-icon" id="resultIcon">🎉</div>
+      <h2 id="resultTitle">Challenge Complete!</h2>
+      <p class="result-score">Tumne <strong><span id="finalScore">0</span></strong> points kamaye!</p>
+      <div class="result-message" id="resultMessage"></div>
+      <div class="result-actions">
+        <a href="dashboard.html" class="btn btn-primary">📊 Dashboard Dekho</a>
+        <a href="leaderboard.html" class="btn btn-secondary">🏆 Leaderboard</a>
+      </div>
+    </div>
+
+    <!-- Already Played Screen -->
+    <div id="alreadyPlayed" class="quiz-card" style="display: none; text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 5rem; margin-bottom: 1rem;">⏳</div>
+      <h2>Aapne Aaj Ka Challenge Complete Kar Liya Hai!</h2>
+      <p style="color: var(--gray); margin-bottom: 2rem;">Kal naya challenge aayega. Tab tak aap Normal Quiz khel sakte hain.</p>
+      <a href="quiz.html" class="btn btn-primary">🎯 Normal Quiz Khelo</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 English Seekho | Made with ❤️</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/challenge.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/nav-updater.js"></script>
+</body>
+</html>
