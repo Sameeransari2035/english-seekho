@@ -264,23 +264,40 @@ function showResults() {
 // SAVE PROGRESS (LocalStorage)
 // ============================================
 function saveProgress(earnedPoints) {
-  // LocalStorage mein save karo
+  // 1. Points update karo
   let totalPoints = parseInt(localStorage.getItem('points') || 0);
   totalPoints += earnedPoints;
   localStorage.setItem('points', totalPoints);
 
+  // 2. Quiz Count update karo
   let quizCount = parseInt(localStorage.getItem('quizCount') || 0);
   quizCount += 1;
   localStorage.setItem('quizCount', quizCount);
 
-  // Firebase mein save karo (agar user logged in hai)
+  // 3. Streak Logic (Naya add karo)
+  const today = new Date().toDateString();
+  const lastPlayed = localStorage.getItem('lastPlayed');
+  let streak = parseInt(localStorage.getItem('streak') || 0);
+
+  if (lastPlayed !== today) {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if (lastPlayed === yesterday.toDateString()) {
+      streak += 1;
+    } else {
+      streak = 1;
+    }
+    localStorage.setItem('streak', streak);
+    localStorage.setItem('lastPlayed', today);
+  }
+
+  // 4. Firebase mein save karo
   const currentUser = localStorage.getItem('currentUser');
   if (currentUser && window.firebaseDB) {
-    // Email se dots aur special characters hatao taaki valid path bane
     const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
     const userRef = window.firebaseRef(window.firebaseDB, 'users/' + safeEmail);
     
-    // Pehle purana data fetch karo
     window.firebaseGet(userRef).then((snapshot) => {
       let fbPoints = 0;
       let fbQuizCount = 0;
@@ -291,11 +308,10 @@ function saveProgress(earnedPoints) {
         fbQuizCount = data.quizCount || 0;
       }
       
-      // Naya data save karo
       window.firebaseSet(userRef, {
         points: fbPoints + earnedPoints,
         quizCount: fbQuizCount + 1,
-        email: currentUser, // Asli email yahan save kar rahe hain
+        email: currentUser,
         lastUpdated: Date.now()
       }).then(() => {
         console.log('✅ Points saved to Firebase');

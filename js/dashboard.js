@@ -53,6 +53,7 @@ function loadDashboard() {
   }
 
   calculateRank(currentUser);
+  renderCalendar(); // Calendar render karo
 }
 
 // ============================================
@@ -81,12 +82,10 @@ function initFeedback() {
       timestamp: Date.now()
     };
 
-    // LocalStorage mein save karo
     let feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
     feedbacks.push(feedback);
     localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
 
-    // Firebase mein save karo
     if (window.firebaseDB && window.firebasePush) {
       const feedbackRef = window.firebaseRef(window.firebaseDB, 'feedbacks');
       window.firebasePush(feedbackRef, feedback)
@@ -94,12 +93,13 @@ function initFeedback() {
         .catch(err => console.error('❌ Error:', err));
     }
 
-    // Success message dikhao
     form.style.display = 'none';
     document.getElementById('feedbackSuccess').style.display = 'block';
+    
     if (typeof showToast === 'function') {
-      showToast("Feedback successfully submit ho gaya! Dhanyawad.", "success");
+      showToast("Feedback successfully submit ho gaya! Dhanyawans.", "success");
     }
+    
     setTimeout(() => {
       form.style.display = 'block';
       document.getElementById('feedbackSuccess').style.display = 'none';
@@ -108,14 +108,10 @@ function initFeedback() {
   });
 }
 
-// Start
-document.addEventListener('DOMContentLoaded', () => {
-  if (typeof loadDashboard === 'function') loadDashboard();
-  initFeedback();
-});
-
+// ============================================
+// CALCULATE RANK
+// ============================================
 function calculateRank(currentEmail) {
-  // Firebase ready hone ka wait karo
   if (!window.firebaseDB) {
     setTimeout(() => calculateRank(currentEmail), 200);
     return;
@@ -131,11 +127,9 @@ function calculateRank(currentEmail) {
       return;
     }
 
-    // Data ko array mein convert karo aur sort karo
     const usersArray = Object.values(data);
     usersArray.sort((a, b) => (b.points || 0) - (a.points || 0));
 
-    // Current user ki rank dhoondo
     let rank = '-';
     for (let i = 0; i < usersArray.length; i++) {
       if (usersArray[i].email === currentEmail) {
@@ -147,12 +141,74 @@ function calculateRank(currentEmail) {
     document.getElementById('dashRank').textContent = rank !== '-' ? '#' + rank : '-';
   });
 }
+
+// ============================================
+// LOGOUT FUNCTION
+// ============================================
 function logoutUser() {
   if (confirm("Kya aap sach mein logout karna chahte hain?")) {
     localStorage.removeItem('currentUser');
-    alert("Aap successfully logout ho gaye hain! 👋");
-    window.location.href = 'index.html';
+    
+    if (typeof showToast === 'function') {
+      showToast("Successfully logout ho gaye! 👋", "success");
+    } else {
+      alert("Aap successfully logout ho gaye hain! 👋");
+    }
+    
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1000);
   }
 }
 
-loadDashboard();
+// ============================================
+// WEEKLY STREAK CALENDAR
+// ============================================
+function renderCalendar() {
+  const calendarGrid = document.getElementById('calendarGrid');
+  const monthYearEl = document.getElementById('currentMonthYear');
+  const streakCountEl = document.getElementById('calStreakCount');
+
+  if (!calendarGrid) return;
+
+  const lastPlayed = localStorage.getItem('lastPlayed');
+  const streak = parseInt(localStorage.getItem('streak') || 0);
+
+  if (streakCountEl) streakCountEl.textContent = streak;
+
+  const today = new Date();
+  const currentMonth = today.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
+  if (monthYearEl) monthYearEl.textContent = currentMonth;
+
+  calendarGrid.innerHTML = '';
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  for (let i = 6; i >= 0; i--) {
+    const date = new Date();
+    date.setDate(today.getDate() - i);
+
+    const isToday = i === 0;
+    let isPlayed = false;
+
+    // Sirf exact match par tick lagao
+    if (lastPlayed && date.toDateString() === lastPlayed) {
+      isPlayed = true;
+    }
+
+    const dayBox = document.createElement('div');
+    dayBox.className = `cal-day ${isToday ? 'today' : ''} ${isPlayed ? 'played' : ''}`;
+    dayBox.innerHTML = `
+      <span class="cal-day-name">${dayNames[date.getDay()]}</span>
+      <span class="cal-date">${date.getDate()}</span>
+      ${isPlayed ? '<span class="cal-check">✅</span>' : ''}
+    `;
+    calendarGrid.appendChild(dayBox);
+  }
+}
+// ============================================
+// START
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  loadDashboard();
+  initFeedback();
+});

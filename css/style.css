@@ -2288,7 +2288,7 @@ html.dark-mode .navbar {
   overflow: hidden;
 }
 
-.progress-fill::after,
+/*.progress-fill::after,
 .level-fill::after {
   content: '';
   position: absolute;
@@ -2298,7 +2298,7 @@ html.dark-mode .navbar {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   animation: shimmer 2s infinite;
-}
+}*/
 
 /* ============================================
    STAT CARDS - Number Counter Effect
@@ -2710,5 +2710,155 @@ html.dark-mode .toast {
   .toast {
     width: 100%;
     justify-content: center;
+  }
+}
+
+
+/* ============================================
+   WEEKLY STREAK CALENDAR
+   ============================================ */
+.calendar-box {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.calendar-header span:first-child {
+  font-weight: 700;
+  color: var(--dark);
+  font-size: 1.1rem;
+}
+
+.streak-badge {
+  background: rgba(251, 191, 36, 0.15);
+  color: #b45309;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.cal-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 0.2rem;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  position: relative;
+  min-height: 70px;
+}
+
+.cal-day-name {
+  font-size: 0.7rem;
+  color: var(--gray);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.cal-date {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.cal-day.today {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.cal-day.played {
+  background: #d1fae5;
+  border-color: #10b981;
+}
+
+.cal-day.played .cal-date {
+  color: #065f46;
+}
+
+.cal-check {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 1rem;
+  background: white;
+  border-radius: 50%;
+  padding: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+html.dark-mode .calendar-box {
+  background: #1e293b;
+}
+
+html.dark-mode .calendar-header span:first-child {
+  color: #f1f5f9;
+}
+
+html.dark-mode .streak-badge {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+}
+
+html.dark-mode .cal-day {
+  background: #0f172a;
+}
+
+html.dark-mode .cal-date {
+  color: #e2e8f0;
+}
+
+html.dark-mode .cal-day.today {
+  background: rgba(129, 140, 248, 0.1);
+}
+
+html.dark-mode .cal-day.played {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+}
+
+html.dark-mode .cal-day.played .cal-date {
+  color: #6ee7b7;
+}
+
+@media (max-width: 600px) {
+  .calendar-days {
+    gap: 0.3rem;
+  }
+  .cal-day {
+    padding: 0.6rem 0.1rem;
+    min-height: 60px;
+  }
+  .cal-day-name {
+    font-size: 0.6rem;
+  }
+  .cal-date {
+    font-size: 0.9rem;
+  }
+  .cal-check {
+    font-size: 0.8rem;
+    top: -4px;
+    right: -4px;
   }
 }
