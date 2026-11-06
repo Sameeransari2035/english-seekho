@@ -32,8 +32,8 @@ function updateNavbar() {
       userName = userName.charAt(0).toUpperCase() + userName.slice(1);
     }
 
-    userArea.innerHTML = `
-      <div class="user-greeting">
+        userArea.innerHTML = `
+      <div class="user-greeting" style="cursor: pointer;" onclick="window.location.href='profile.html'">
         <span class="user-avatar">${userName.charAt(0).toUpperCase()}</span>
         <span class="user-name">${userName}</span>
       </div>
@@ -53,6 +53,7 @@ function logoutFromNavbar() {
   if (confirm("Kya aap sach mein logout karna chahte hain?")) {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('userName');
-    window.location.href = 'index.html';
+    if (typeof showToast === 'function') showToast("Successfully logout ho gaye!", "success");
+    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
   }
 }

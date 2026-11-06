@@ -55,6 +55,65 @@ function loadDashboard() {
   calculateRank(currentUser);
 }
 
+// ============================================
+// FEEDBACK SYSTEM
+// ============================================
+function initFeedback() {
+  const form = document.getElementById('feedbackForm');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const rating = document.querySelector('input[name="rating"]:checked');
+    const text = document.getElementById('feedbackText').value.trim();
+    
+    if (!rating) {
+      alert("Kripya rating dein!");
+      return;
+    }
+
+    const currentUser = localStorage.getItem('currentUser') || 'Anonymous';
+    const feedback = {
+      email: currentUser,
+      rating: parseInt(rating.value),
+      message: text,
+      timestamp: Date.now()
+    };
+
+    // LocalStorage mein save karo
+    let feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+    feedbacks.push(feedback);
+    localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+
+    // Firebase mein save karo
+    if (window.firebaseDB && window.firebasePush) {
+      const feedbackRef = window.firebaseRef(window.firebaseDB, 'feedbacks');
+      window.firebasePush(feedbackRef, feedback)
+        .then(() => console.log('✅ Feedback saved to Firebase'))
+        .catch(err => console.error('❌ Error:', err));
+    }
+
+    // Success message dikhao
+    form.style.display = 'none';
+    document.getElementById('feedbackSuccess').style.display = 'block';
+    if (typeof showToast === 'function') {
+      showToast("Feedback successfully submit ho gaya! Dhanyawad.", "success");
+    }
+    setTimeout(() => {
+      form.style.display = 'block';
+      document.getElementById('feedbackSuccess').style.display = 'none';
+      form.reset();
+    }, 3000);
+  });
+}
+
+// Start
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof loadDashboard === 'function') loadDashboard();
+  initFeedback();
+});
+
 function calculateRank(currentEmail) {
   // Firebase ready hone ka wait karo
   if (!window.firebaseDB) {

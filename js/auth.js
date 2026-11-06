@@ -48,22 +48,39 @@ authForm.addEventListener('submit', function (e) {
   // Firebase ready hone ka wait karo
   function waitForFirebaseAuth() {
     if (window.firebaseAuth) {
-      if (isLoginMode) {
-              // LOGIN
+            if (isLoginMode) {
+        // LOGIN
         window.firebaseSignIn(window.firebaseAuth, email, password)
           .then((userCredential) => {
             localStorage.setItem('currentUser', userCredential.user.email);
-            window.location.href = 'dashboard.html'; // 👈 Yahan change karo
+
+            // Toast dikhao
+            if (typeof showToast === 'function') {
+              showToast("Login successful! Welcome back 🎉", "success");
+            }
+            
+            // 1.5 second baad Dashboard par bhejo
+            setTimeout(() => {
+              window.location.href = 'dashboard.html';
+            }, 1500);
           })
           .catch((error) => {
             showError(error.message);
           });
       } else {
+
+        
         // SIGNUP
         window.firebaseCreateUser(window.firebaseAuth, email, password)
           .then((userCredential) => {
             localStorage.setItem('currentUser', userCredential.user.email);
-            window.location.href = 'dashboard.html'; // 👈 Yahan bhi change karo
+
+            // Toast dikhao
+            if (typeof showToast === 'function') {
+              showToast("Account created successfully! 🎉", "success");
+            }
+
+            setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
           })
           .catch((error) => {
             showError(error.message);
@@ -81,14 +98,20 @@ function showError(msg) {
   authSubmitBtn.textContent = isLoginMode ? 'Login Karein' : 'Account Banayein';
   authSubmitBtn.disabled = false;
 
+  let errorMsg = "";
   if (msg.includes('auth/invalid-credential') || msg.includes('auth/user-not-found') || msg.includes('auth/wrong-password')) {
-    authError.textContent = "❌ Email ya password galat hai!";
+    errorMsg = "Email ya password galat hai!";
   } else if (msg.includes('auth/email-already-in-use')) {
-    authError.textContent = "❌ Ye email pehle se registered hai. Login karein!";
+    errorMsg = "Ye email pehle se registered hai. Login karein!";
   } else if (msg.includes('auth/weak-password')) {
-    authError.textContent = "❌ Password kamzor hai (6+ characters chahiye).";
+    errorMsg = "Password kamzor hai (6+ characters chahiye).";
   } else {
-    authError.textContent = "❌ Error: " + msg;
+    errorMsg = "Error: " + msg;
   }
-  authError.style.display = 'block';
+
+  if (typeof showToast === 'function') {
+    showToast(errorMsg, 'error');
+  } else {
+    alert(errorMsg);
+  }
 }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - English Seekho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/dark-mode.js"></script>
+
+  <!-- Firebase SDK (CDN) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
+      authDomain: "english-seekho-v2.firebaseapp.com",
+      databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
+      projectId: "english-seekho-v2",
+      storageBucket: "english-seekho-v2.firebasestorage.app",
+      messagingSenderId: "393175002297",
+      appId: "1:393175002297:web:8ac546459c7fa803917f68"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.firebaseDB = db;
+    window.firebaseRef = ref;
+    window.firebaseOnValue = onValue;
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📚 English Seekho</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="grammar.html">Grammar</a></li>
+      <li><a href="vocabulary.html">Vocabulary</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="challenge.html">Daily Challenge</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);">
+    <h1>👤 My Profile</h1>
+    <p>Apna account aur progress dekho</p>
+  </header>
+
+  <!-- Profile Container -->
+  <main class="profile-container">
+    <div class="profile-card">
+      
+      <!-- Avatar & Info -->
+      <div class="profile-header">
+        <div class="profile-avatar" id="profileAvatar">U</div>
+        <h2 id="profileName">User</h2>
+        <p class="profile-email" id="profileEmail">user@email.com</p>
+        <button class="btn-edit-name" onclick="editName()">✏️ Naam Badlein</button>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-value" id="profilePoints">0</div>
+          <div class="stat-label">Points</div>
+        </div>
+        <div class="profile-stat">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-value" id="profileRank">-</div>
+          <div class="stat-label">Rank</div>
+        </div>
+        <div class="profile-stat">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value" id="profileQuizzes">0</div>
+          <div class="stat-label">Quizzes</div>
+        </div>
+        <div class="profile-stat">
+          <div class="stat-icon">🎖️</div>
+          <div class="stat-value" id="profileLevel">Beginner</div>
+          <div class="stat-label">Level</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="profile-actions">
+        <a href="dashboard.html" class="btn btn-primary">📊 Dashboard</a>
+        <button class="btn btn-secondary" onclick="logoutUser()">🚪 Logout</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 English Seekho | Made with ❤️</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/profile.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/nav-updater.js"></script>
+    <script src="js/toast.js"></script>
+</body>
+</body>
+</html>
