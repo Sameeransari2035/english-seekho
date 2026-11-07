@@ -160,6 +160,18 @@ function showResults() {
     document.getElementById('resultIcon').textContent = '😅';
   }
   document.getElementById('resultMessage').textContent = message;
+    if (percentage >= 80) {
+    setTimeout(() => {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#6366f1', '#a855f7', '#fbbf24', '#10b981']
+        });
+      }
+    }, 300);
+  }
 
   // Save to LocalStorage
   let totalPoints = parseInt(localStorage.getItem('points') || 0);

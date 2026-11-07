@@ -2,131 +2,26 @@
 // QUIZ QUESTIONS
 // ============================================
 const quizQuestions = [
-  {
-    question: "Noun kya hota hai?",
-    options: [
-      "Kisi kaam ka naam",
-      "Kisi vyakti, jagah ya cheez ka naam",
-      "Kisi ki visheshta",
-      "Kisi ka bhaav"
-    ],
-    correct: 1,
-    explanation: "Noun wo shabd hai jo vyakti, jagah, cheez ya bhaav ka naam batata hai."
-  },
-  {
-    question: "Inme se 'Proper Noun' kaunsa hai?",
-    options: ["boy", "city", "Delhi", "book"],
-    correct: 2,
-    explanation: "Delhi ek khaas jagah ka naam hai, isliye ye Proper Noun hai."
-  },
-  {
-    question: "Sahi pronoun chuno: '___ is my sister.'",
-    options: ["He", "She", "It", "They"],
-    correct: 1,
-    explanation: "Sister ke liye 'She' pronoun use hota hai."
-  },
-  {
-    question: "Sahi article chuno: 'I ate ___ apple.'",
-    options: ["a", "an", "the", "no article"],
-    correct: 1,
-    explanation: "'Apple' vowel sound se shuru hota hai, isliye 'an' lagega."
-  },
-  {
-    question: "Sahi verb chuno: 'She ___ to school every day.'",
-    options: ["go", "goes", "going", "gone"],
-    correct: 1,
-    explanation: "He/She/It ke saath verb mein 's' ya 'es' lagta hai — 'goes'."
-  }  ,
-  {
-    question: "Sahi verb chuno: 'She ___ a beautiful song.'",
-    options: ["sing", "sings", "singing", "sang"],
-    correct: 1,
-    explanation: "Present tense mein He/She/It ke saath verb mein 's' lagta hai."
-  },
-  {
-    question: "Sahi past tense chuno: 'I ___ to the market yesterday.'",
-    options: ["go", "goes", "went", "gone"],
-    correct: 2,
-    explanation: "'Yesterday' past time batata hai, isliye 'went' lagega."
-  },
-  {
-    question: "Sahi preposition chuno: 'The cat is ___ the table.'",
-    options: ["in", "on", "at", "for"],
-    correct: 1,
-    explanation: "Cheez ke upar hone ke liye 'on' use hota hai."
-  },
-  {
-    question: "Inme se kaunsa adjective hai?",
-    options: ["Run", "Beautiful", "Quickly", "Happiness"],
-    correct: 1,
-    explanation: "Beautiful ek adjective hai."
-  },
-  {
-    question: "Sahi future tense chuno: 'I ___ help you tomorrow.'",
-    options: ["will", "am", "did", "was"],
-    correct: 0,
-    explanation: "Future ke liye 'will' use hota hai."
-  }  ,
-  {
-    question: "Sahi conjunction chuno: 'I like tea ___ coffee.'",
-    options: ["but", "and", "because", "or"],
-    correct: 1,
-    explanation: "Do cheezon ko jodne ke liye 'and' use hota hai."
-  },
-  {
-    question: "Sahi conjunction chuno: 'He is rich ___ not happy.'",
-    options: ["and", "but", "so", "because"],
-    correct: 1,
-    explanation: "Ulta ya virudh baat batane ke liye 'but' use hota hai."
-  },
-  {
-    question: "Inme se interjection kaunsa hai?",
-    options: ["Run", "Wow!", "Beautiful", "Quickly"],
-    correct: 1,
-    explanation: "Wow! ek interjection hai jo achanak khushi vyakt karta hai."
-  },
-  {
-    question: "Passive voice chuno:",
-    options: ["Ram eats an apple.", "An apple is eaten by Ram.", "Ram is eating an apple.", "Ram will eat an apple."],
-    correct: 1,
-    explanation: "Passive voice mein object pehle aata hai aur 'by' use hota hai."
-  },
-  {
-    question: "Indirect speech chuno:",
-    options: ["He said, 'I am happy.'", "He said that he was happy.", "He says, 'I am happy.'", "He said, I am happy."],
-    correct: 1,
-    explanation: "Indirect speech mein quotes nahi hote aur tense change hota hai."
-  },
-  {
-    question: "Sentence ke end mein kya lagta hai?",
-    options: ["Comma (,)", "Period (.)", "Exclamation (!)", "Question Mark (?)"],
-    correct: 1,
-    explanation: "Statement ke end mein period (.) lagta hai."
-  },
-  {
-    question: "Sahi punctuation chuno: 'How are you___'",
-    options: [".", ",", "?", "!"],
-    correct: 2,
-    explanation: "Sawaal ke end mein question mark (?) lagta hai."
-  },
-  {
-    question: "Sahi article chuno: 'He is ___ honest man.'",
-    options: ["a", "an", "the", "no article"],
-    correct: 1,
-    explanation: "'Honest' vowel sound (o) se shuru hota hai, isliye 'an' lagega."
-  },
-  {
-    question: "Sahi preposition chuno: 'She is good ___ mathematics.'",
-    options: ["in", "at", "on", "for"],
-    correct: 1,
-    explanation: "'Good at' ek fixed phrase hai."
-  },
-  {
-    question: "Sahi verb chuno: 'He ___ his homework before dinner.'",
-    options: ["do", "does", "did", "done"],
-    correct: 2,
-    explanation: "Past tense mein 'did' use hota hai."
-  }
+  { question: "Noun kya hota hai?", options: ["Kisi kaam ka naam", "Kisi vyakti, jagah ya cheez ka naam", "Kisi ki visheshta", "Kisi ka bhaav"], correct: 1, explanation: "Noun wo shabd hai jo vyakti, jagah, cheez ya bhaav ka naam batata hai." },
+  { question: "Inme se 'Proper Noun' kaunsa hai?", options: ["boy", "city", "Delhi", "book"], correct: 2, explanation: "Delhi ek khaas jagah ka naam hai, isliye ye Proper Noun hai." },
+  { question: "Sahi pronoun chuno: '___ is my sister.'", options: ["He", "She", "It", "They"], correct: 1, explanation: "Sister ke liye 'She' pronoun use hota hai." },
+  { question: "Sahi article chuno: 'I ate ___ apple.'", options: ["a", "an", "the", "no article"], correct: 1, explanation: "'Apple' vowel sound se shuru hota hai, isliye 'an' lagega." },
+  { question: "Sahi verb chuno: 'She ___ to school every day.'", options: ["go", "goes", "going", "gone"], correct: 1, explanation: "He/She/It ke saath verb mein 's' ya 'es' lagta hai — 'goes'." },
+  { question: "Sahi verb chuno: 'She ___ a beautiful song.'", options: ["sing", "sings", "singing", "sang"], correct: 1, explanation: "Present tense mein He/She/It ke saath verb mein 's' lagta hai." },
+  { question: "Sahi past tense chuno: 'I ___ to the market yesterday.'", options: ["go", "goes", "went", "gone"], correct: 2, explanation: "'Yesterday' past time batata hai, isliye 'went' lagega." },
+  { question: "Sahi preposition chuno: 'The cat is ___ the table.'", options: ["in", "on", "at", "for"], correct: 1, explanation: "Cheez ke upar hone ke liye 'on' use hota hai." },
+  { question: "Inme se kaunsa adjective hai?", options: ["Run", "Beautiful", "Quickly", "Happiness"], correct: 1, explanation: "Beautiful ek adjective hai." },
+  { question: "Sahi future tense chuno: 'I ___ help you tomorrow.'", options: ["will", "am", "did", "was"], correct: 0, explanation: "Future ke liye 'will' use hota hai." },
+  { question: "Sahi conjunction chuno: 'I like tea ___ coffee.'", options: ["but", "and", "because", "or"], correct: 1, explanation: "Do cheezon ko jodne ke liye 'and' use hota hai." },
+  { question: "Sahi conjunction chuno: 'He is rich ___ not happy.'", options: ["and", "but", "so", "because"], correct: 1, explanation: "Ulta ya virudh baat batane ke liye 'but' use hota hai." },
+  { question: "Inme se interjection kaunsa hai?", options: ["Run", "Wow!", "Beautiful", "Quickly"], correct: 1, explanation: "Wow! ek interjection hai." },
+  { question: "Passive voice chuno:", options: ["Ram eats an apple.", "An apple is eaten by Ram.", "Ram is eating an apple.", "Ram will eat an apple."], correct: 1, explanation: "Passive voice mein object pehle aata hai aur 'by' use hota hai." },
+  { question: "Indirect speech chuno:", options: ["He said, 'I am happy.'", "He said that he was happy.", "He says, 'I am happy.'", "He said, I am happy."], correct: 1, explanation: "Indirect speech mein quotes nahi hote aur tense change hota hai." },
+  { question: "Sentence ke end mein kya lagta hai?", options: ["Comma (,)", "Period (.)", "Exclamation (!)", "Question Mark (?)"], correct: 1, explanation: "Statement ke end mein period (.) lagta hai." },
+  { question: "Sahi punctuation chuno: 'How are you___'", options: [".", ",", "?", "!"], correct: 2, explanation: "Sawaal ke end mein question mark (?) lagta hai." },
+  { question: "Sahi article chuno: 'He is ___ honest man.'", options: ["a", "an", "the", "no article"], correct: 1, explanation: "'Honest' vowel sound (o) se shuru hota hai, isliye 'an' lagega." },
+  { question: "Sahi preposition chuno: 'She is good ___ mathematics.'", options: ["in", "at", "on", "for"], correct: 1, explanation: "'Good at' ek fixed phrase hai." },
+  { question: "Sahi verb chuno: 'He ___ his homework before dinner.'", options: ["do", "does", "did", "done"], correct: 2, explanation: "Past tense mein 'did' use hota hai." }
 ];
 
 // ============================================
@@ -135,6 +30,7 @@ const quizQuestions = [
 let currentQuestionIndex = 0;
 let score = 0;
 let answered = false;
+let shuffledQuestions = [];
 
 const questionText = document.getElementById('questionText');
 const optionsContainer = document.getElementById('optionsContainer');
@@ -148,6 +44,18 @@ const scoreDisplay = document.getElementById('scoreDisplay');
 const progressFill = document.getElementById('progressFill');
 
 // ============================================
+// SHUFFLE FUNCTION
+// ============================================
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// ============================================
 // INIT
 // ============================================
 function initQuiz() {
@@ -158,6 +66,14 @@ function initQuiz() {
   quizCard.style.display = 'block';
   resultCard.style.display = 'none';
   progressFill.style.width = '0%';
+
+  shuffledQuestions = shuffleArray(quizQuestions).map(q => {
+    const originalCorrectText = q.options[q.correct];
+    const shuffledOptions = shuffleArray(q.options);
+    const newCorrectIndex = shuffledOptions.indexOf(originalCorrectText);
+    return { ...q, options: shuffledOptions, correct: newCorrectIndex };
+  });
+
   loadQuestion();
 }
 
@@ -170,11 +86,11 @@ function loadQuestion() {
   feedback.className = 'feedback';
   nextBtn.style.display = 'none';
 
-  const q = quizQuestions[currentQuestionIndex];
+  const q = shuffledQuestions[currentQuestionIndex];
   currentQSpan.textContent = currentQuestionIndex + 1;
   questionText.textContent = q.question;
 
-  const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
+  const progressPercent = (currentQuestionIndex / shuffledQuestions.length) * 100;
   progressFill.style.width = progressPercent + '%';
 
   optionsContainer.innerHTML = '';
@@ -194,9 +110,8 @@ function selectAnswer(selectedIndex, btnElement) {
   if (answered) return;
   answered = true;
 
-  const q = quizQuestions[currentQuestionIndex];
+  const q = shuffledQuestions[currentQuestionIndex];
   const allOptions = optionsContainer.querySelectorAll('.option-btn');
-
   allOptions[q.correct].classList.add('correct');
 
   if (selectedIndex === q.correct) {
@@ -211,13 +126,8 @@ function selectAnswer(selectedIndex, btnElement) {
   }
 
   allOptions.forEach(opt => opt.disabled = true);
-
   nextBtn.style.display = 'inline-block';
-  if (currentQuestionIndex === quizQuestions.length - 1) {
-    nextBtn.textContent = 'Results Dekho →';
-  } else {
-    nextBtn.textContent = 'Next Question →';
-  }
+  nextBtn.textContent = (currentQuestionIndex === shuffledQuestions.length - 1) ? 'Results Dekho →' : 'Next Question →';
 }
 
 // ============================================
@@ -225,7 +135,7 @@ function selectAnswer(selectedIndex, btnElement) {
 // ============================================
 nextBtn.onclick = () => {
   currentQuestionIndex++;
-  if (currentQuestionIndex < quizQuestions.length) {
+  if (currentQuestionIndex < shuffledQuestions.length) {
     loadQuestion();
   } else {
     showResults();
@@ -233,14 +143,14 @@ nextBtn.onclick = () => {
 };
 
 // ============================================
-// SHOW RESULTS
+// SHOW RESULTS & CONFETTI
 // ============================================
 function showResults() {
   quizCard.style.display = 'none';
   resultCard.style.display = 'block';
   progressFill.style.width = '100%';
 
-  const maxScore = quizQuestions.length * 10;
+  const maxScore = shuffledQuestions.length * 10;
   document.getElementById('finalScore').textContent = score;
   document.getElementById('maxScore').textContent = maxScore;
 
@@ -258,23 +168,36 @@ function showResults() {
   document.getElementById('resultMessage').textContent = message;
 
   saveProgress(score);
+
+  // Confetti Celebration
+  if (percentage >= 80) {
+    setTimeout(() => {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#6366f1', '#a855f7', '#fbbf24', '#10b981']
+        });
+        setTimeout(() => {
+          confetti({ particleCount: 100, angle: 60, spread: 55, origin: { x: 0 } });
+          confetti({ particleCount: 100, angle: 120, spread: 55, origin: { x: 1 } });
+        }, 400);
+      }
+    }, 300);
+  }
 }
 
 // ============================================
-// SAVE PROGRESS (LocalStorage)
+// SAVE PROGRESS
 // ============================================
 function saveProgress(earnedPoints) {
-  // 1. Points update karo
-  let totalPoints = parseInt(localStorage.getItem('points') || 0);
-  totalPoints += earnedPoints;
+  let totalPoints = parseInt(localStorage.getItem('points') || 0) + earnedPoints;
   localStorage.setItem('points', totalPoints);
 
-  // 2. Quiz Count update karo
-  let quizCount = parseInt(localStorage.getItem('quizCount') || 0);
-  quizCount += 1;
+  let quizCount = parseInt(localStorage.getItem('quizCount') || 0) + 1;
   localStorage.setItem('quizCount', quizCount);
 
-  // 3. Streak Logic (Naya add karo)
   const today = new Date().toDateString();
   const lastPlayed = localStorage.getItem('lastPlayed');
   let streak = parseInt(localStorage.getItem('streak') || 0);
@@ -282,17 +205,11 @@ function saveProgress(earnedPoints) {
   if (lastPlayed !== today) {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-
-    if (lastPlayed === yesterday.toDateString()) {
-      streak += 1;
-    } else {
-      streak = 1;
-    }
+    streak = (lastPlayed === yesterday.toDateString()) ? streak + 1 : 1;
     localStorage.setItem('streak', streak);
     localStorage.setItem('lastPlayed', today);
   }
 
-  // 4. Firebase mein save karo
   const currentUser = localStorage.getItem('currentUser');
   if (currentUser && window.firebaseDB) {
     const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
@@ -301,26 +218,22 @@ function saveProgress(earnedPoints) {
     window.firebaseGet(userRef).then((snapshot) => {
       let fbPoints = 0;
       let fbQuizCount = 0;
-      
       if (snapshot.exists()) {
         const data = snapshot.val();
         fbPoints = data.points || 0;
         fbQuizCount = data.quizCount || 0;
       }
-      
       window.firebaseSet(userRef, {
         points: fbPoints + earnedPoints,
         quizCount: fbQuizCount + 1,
         email: currentUser,
         lastUpdated: Date.now()
-      }).then(() => {
-        console.log('✅ Points saved to Firebase');
-      }).catch((err) => {
-        console.error('❌ Firebase save error:', err);
-      });
+      }).then(() => console.log('✅ Points saved to Firebase'))
+        .catch(err => console.error('❌ Firebase save error:', err));
     });
   }
 }
+
 // ============================================
 // RESTART
 // ============================================
