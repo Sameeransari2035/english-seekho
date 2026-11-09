@@ -455,6 +455,150 @@ const lessonsData = {
         💡 <strong>Tip:</strong> Sahi punctuation ke bina sentence ka matlab badal sakta hai. Jaise: "Let's eat, grandma!" vs "Let's eat grandma!"
       </div>
     `
+  }  ,
+  16: {
+    title: "Singular & Plural (Ek & Anek)",
+    content: `
+      <h2>Singular & Plural kya hai? 🤔</h2>
+      <p><strong>Singular</strong> matlab ek (1 cheez). <strong>Plural</strong> matlab ek se zyada (2 ya usse zyada).</p>
+      <div class="example-box">
+        <p><strong>Singular:</strong> boy, cat, book, apple</p>
+        <p><strong>Plural:</strong> boys, cats, books, apples</p>
+      </div>
+      <h2>Plural banane ke Rules</h2>
+      <h3>1. Aksar 's' lagao</h3>
+      <ul>
+        <li>book → book<strong>s</strong></li>
+        <li>pen → pen<strong>s</strong></li>
+      </ul>
+      <h3>2. 's', 'sh', 'ch', 'x' par 'es' lagao</h3>
+      <ul>
+        <li>box → box<strong>es</strong></li>
+        <li>church → church<strong>es</strong></li>
+      </ul>
+      <h3>3. 'y' se pehle consonant ho toh 'ies'</h3>
+      <ul>
+        <li>baby → bab<strong>ies</strong></li>
+        <li>city → cit<strong>ies</strong></li>
+      </ul>
+      <div class="tip-box">
+        💡 <strong>Tip:</strong> Kuch irregular plurals bhi hote hain: man → men, child → children, foot → feet.
+      </div>
+    `
+  },
+  17: {
+    title: "This, That, These, Those",
+    content: `
+      <h2>Demonstratives kya hain? 🤔</h2>
+      <p>Ye shabd batate hain ki cheez <strong>paas</strong> hai ya <strong>door</strong>.</p>
+      <h3>Paas ki cheez ke liye</h3>
+      <ul>
+        <li><strong>This</strong> (ek cheez) - This is my pen.</li>
+        <li><strong>These</strong> (kai cheezein) - These are my books.</li>
+      </ul>
+      <h3>Door ki cheez ke liye</h3>
+      <ul>
+        <li><strong>That</strong> (ek cheez) - That is your bag.</li>
+        <li><strong>Those</strong> (kai cheezein) - Those are your shoes.</li>
+      </ul>
+      <div class="tip-box">
+        💡 <strong>Tip:</strong> Yaad rakho: <strong>This/That</strong> = Singular, <strong>These/Those</strong> = Plural.
+      </div>
+    `
+  },
+  18: {
+    title: "Have, Has, Had",
+    content: `
+      <h2>Have, Has, Had ka use 🤔</h2>
+      <p>Ye verbs <strong>possession</strong> (kisi cheez ka hona) batate hain.</p>
+      <h3>1. Have</h3>
+      <p>I, You, We, They ke saath.</p>
+      <ul>
+        <li>I <strong>have</strong> a car.</li>
+        <li>They <strong>have</strong> two dogs.</li>
+      </ul>
+      <h3>2. Has</h3>
+      <p>He, She, It ke saath.</p>
+      <ul>
+        <li>She <strong>has</strong> a beautiful dress.</li>
+        <li>He <strong>has</strong> a new phone.</li>
+      </ul>
+      <h3>3. Had</h3>
+      <p>Past tense mein sabke saath.</p>
+      <ul>
+        <li>I <strong>had</strong> a car last year.</li>
+      </ul>
+      <div class="tip-box">
+        💡 <strong>Tip:</strong> He/She/It ke saath hamesha <strong>has</strong> ya <strong>had</strong> use karo, 'have' nahi.
+      </div>
+    `
+  },
+  19: {
+    title: "Can, Could, May",
+    content: `
+      <h2>Modal Verbs kya hain? 🤔</h2>
+      <p>Ye verbs <strong>ability, permission, ya possibility</strong> batate hain.</p>
+      <h3>1. Can (Kar sakta hoon)</h3>
+      <ul>
+        <li>I <strong>can</strong> swim. (Mujhe tairna aata hai)</li>
+        <li><strong>Can</strong> you help me? (Kya tum madad kar sakte ho?)</li>
+      </ul>
+      <h3>2. Could (Kar sakta tha / politely)</h3>
+      <ul>
+        <li>I <strong>could</strong> swim when I was 5.</li>
+        <li><strong>Could</strong> you please open the door?</li>
+      </ul>
+      <h3>3. May (Permission / possibility)</h3>
+      <ul>
+        <li><strong>May</strong> I come in? (Kya main andar aa sakta hoon?)</li>
+        <li>It <strong>may</strong> rain today.</li>
+      </ul>
+      <div class="tip-box">
+        💡 <strong>Tip:</strong> 'Can' zyada casual hai, 'May' zyada formal hai.
+      </div>
+    `
+  },
+  20: {
+    title: "There is / There are",
+    content: `
+      <h2>There is / There are kya hai? 🤔</h2>
+      <p>Ye batate hain ki koi cheez <strong>kisi jagah par maujood hai</strong>.</p>
+      <h3>1. There is (Singular)</h3>
+      <ul>
+        <li><strong>There is</strong> a book on the table.</li>
+        <li><strong>There is</strong> a cat in the garden.</li>
+      </ul>
+      <h3>2. There are (Plural)</h3>
+      <ul>
+        <li><strong>There are</strong> two books on the table.</li>
+        <li><strong>There are</strong> many students in the class.</li>
+      </ul>
+      <div class="tip-box">
+        💡 <strong>Tip:</strong> Ek cheez = There is, Kai cheezein = There are.
+      </div>
+    `
+  },
+  21: {
+    title: "Question Words (Wh- Words)",
+    content: `
+      <h2>Question Words kya hain? 🤔</h2>
+      <p>Ye shabd sawaal poochne ke liye use hote hain.</p>
+      <h3>Common Wh- Words</h3>
+      <ul>
+        <li><strong>What</strong> - Kya (What is your name?)</li>
+        <li><strong>Who</strong> - Kaun (Who is he?)</li>
+        <li><strong>Where</strong> - Kahan (Where do you live?)</li>
+        <li><strong>When</strong> - Kab (When will you come?)</li>
+        <li><strong>Why</strong> - Kyun (Why are you sad?)</li>
+        <li><strong>How</strong> - Kaise (How are you?)</li>
+      </ul>
+      <div class="example-box">
+        <p><strong>Example:</strong> <strong>Where</strong> do you work? (Tum kahan kaam karte ho?)</p>
+      </div>
+      <div class="tip-box">
+        💡 <strong>Tip:</strong> Sawaal hamesha capital letter se shuru hota hai aur '?' par khatam hota hai.
+      </div>
+    `
   }
 };
 
@@ -467,6 +611,12 @@ const lesson = lessonsData[lessonNum];
 
 if (lesson) {
   document.title = lesson.title + " - English Seekho";
+
+  const breadcrumbEl = document.getElementById('lessonTitleBreadcrumb');
+  if (breadcrumbEl) {
+    breadcrumbEl.textContent = lesson.title; 
+  }
+
   document.getElementById('lessonNum').textContent = lessonNum;
   document.getElementById('lessonTitle').textContent = lesson.title;
   document.getElementById('lessonContent').innerHTML = lesson.content;
@@ -474,4 +624,10 @@ if (lesson) {
   document.getElementById('lessonTitle').textContent = "Lesson nahi mila 😕";
   document.getElementById('lessonContent').innerHTML =
     '<p>Ye lesson available nahi hai. <a href="grammar.html">Saare lessons dekho</a>.</p>';
+}
+
+// Lesson padhne par mark as read
+if (lesson) {
+  const lessonNum = params.get('lesson');
+  localStorage.setItem(`lesson_${lessonNum}_read`, 'true');
 }

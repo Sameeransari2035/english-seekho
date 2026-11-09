@@ -2862,3 +2862,656 @@ html.dark-mode .cal-day.played .cal-date {
     right: -4px;
   }
 }
+/* ============================================
+   PROFESSIONAL FOOTER
+   ============================================ */
+.footer {
+  background: var(--dark);
+  color: #d1d5db;
+  margin-top: 4rem;
+  padding: 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-col h3 {
+  color: var(--white);
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+
+.footer-col p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #9ca3af;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-links a {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+  padding-left: 5px;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-links a:hover {
+  background: var(--gradient);
+  transform: translateY(-3px);
+  border-color: transparent;
+}
+
+.footer-tagline {
+  font-size: 0.9rem !important;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Dark Mode ke liye Footer (pehle se dark hai) */
+html.dark-mode .footer {
+  background: #020617;
+}
+
+html.dark-mode .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   FOOTER RESPONSIVE (Mobile)
+   ============================================ */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 1.5rem 1.5rem;
+    text-align: center;
+  }
+  
+  .footer-links {
+    align-items: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+  
+  .footer-col h3 {
+    font-size: 1.1rem;
+  }
+  
+  .footer-col p {
+    font-size: 0.88rem;
+  }
+  
+  .footer-bottom {
+    padding: 1.2rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+
+/* ============================================
+   GRAMMAR LEVELS (Level-wise Sections)
+   ============================================ */
+.level-section {
+  margin-bottom: 4rem;
+}
+
+.level-section:last-child {
+  margin-bottom: 0;
+}
+
+.level-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-bottom: 1.2rem;
+}
+
+.level-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient);
+  border-radius: 2px;
+}
+
+.level-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.level-header p {
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+/* Level Specific Tags */
+.lesson-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--primary-dark);
+}
+
+/* Dark Mode */
+html.dark-mode .level-header h2 {
+  color: #f1f5f9;
+}
+
+html.dark-mode .level-header p {
+  color: #94a3b8;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .level-section {
+    margin-bottom: 3rem;
+  }
+  .level-header h2 {
+    font-size: 1.5rem;
+  }
+  .level-header p {
+    font-size: 0.9rem;
+  }
+  .level-header::after {
+    width: 60px;
+    height: 3px;
+  }
+}
+
+
+/* ============================================
+   LESSON LOCK STYLES
+   ============================================ */
+.lesson-card.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.lesson-card.locked::after {
+  content: '🔒';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+}
+
+.lesson-card.locked:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+  border-color: transparent;
+}
+
+/* Dark Mode */
+html.dark-mode .lesson-card.locked {
+  opacity: 0.4;
+}
+
+/* ============================================
+   LESSON LOCK STYLES (Points System)
+   ============================================ */
+.lesson-card.locked {
+  opacity: 0.7;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.lesson-card.locked::after {
+  content: '🔒';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+}
+
+.lesson-card.locked:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+  border-color: transparent;
+}
+
+.lesson-cost {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b45309;
+  background: rgba(251, 191, 36, 0.15);
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  margin-left: 0.5rem;
+}
+
+.lesson-card:not(.locked) .lesson-cost {
+  display: none; /* Jab unlock ho jaye toh cost na dikhe */
+}
+
+/* Dark Mode */
+html.dark-mode .lesson-card.locked {
+  opacity: 0.5;
+}
+
+html.dark-mode .lesson-cost {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+}
+
+/* ============================================
+   LESSON LOCK STYLES (Level-wise + Points)
+   ============================================ */
+.lesson-card.locked {
+  opacity: 0.7;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.lesson-card.locked::after {
+  content: '🔒';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+}
+
+.lesson-card.locked:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+  border-color: transparent;
+}
+
+.lesson-cost {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b45309;
+  background: rgba(251, 191, 36, 0.15);
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  margin-left: 0.5rem;
+}
+
+/* Dark Mode */
+html.dark-mode .lesson-card.locked {
+  opacity: 0.5;
+}
+
+html.dark-mode .lesson-cost {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+}
+
+/* ============================================
+   LEARNING PATH
+   ============================================ */
+.path-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.path-level {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.path-level.locked {
+  opacity: 0.6;
+  background: #f3f4f6;
+}
+
+.path-level.passed {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.level-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid;
+  margin-bottom: 1rem;
+}
+
+.level-badge {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.level-title-area h2 {
+  font-size: 1.3rem;
+  color: var(--dark);
+  margin-bottom: 0.2rem;
+}
+
+.level-title-area p {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+.level-lessons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.path-lesson {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: #f9fafb;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--dark);
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.path-lesson:hover:not(.disabled) {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--primary);
+}
+
+.path-lesson.done {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+}
+
+.path-lesson.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.path-lesson-num {
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.path-lesson-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.path-check {
+  margin-left: auto;
+  font-size: 1.1rem;
+}
+
+.level-boss {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.level-boss.inactive {
+  background: #f3f4f6;
+  opacity: 0.7;
+}
+
+.boss-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.boss-icon {
+  font-size: 2rem;
+}
+
+.boss-info h3 {
+  font-size: 1rem;
+  color: var(--dark);
+}
+
+.boss-info p {
+  font-size: 0.8rem;
+  color: #92400e;
+}
+
+.boss-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+}
+
+.boss-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   BOSS MODAL
+   ============================================ */
+.boss-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.boss-modal-content {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.boss-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.boss-icon-large {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: pulse 1.5s infinite;
+}
+
+.boss-header h2 {
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+.boss-header p {
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+.boss-progress {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+}
+
+.boss-question-text {
+  font-size: 1.2rem;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.boss-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.boss-result {
+  text-align: center;
+  padding: 1rem;
+}
+
+.boss-result-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.boss-result h2 {
+  margin-bottom: 1rem;
+}
+
+.boss-result.win h2 { color: #10b981; }
+.boss-result.lose h2 { color: #ef4444; }
+
+.boss-reward {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 12px;
+}
+
+/* Dark Mode */
+html.dark-mode .path-level {
+  background: #1e293b;
+}
+
+html.dark-mode .path-level.locked {
+  background: #0f172a;
+}
+
+html.dark-mode .level-title-area h2 {
+  color: #f1f5f9;
+}
+
+html.dark-mode .path-lesson {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+html.dark-mode .path-lesson.done {
+  background: rgba(16, 185, 129, 0.15);
+}
+
+html.dark-mode .level-boss {
+  background: linear-gradient(135deg, #78350f, #92400e);
+}
+
+html.dark-mode .level-boss.inactive {
+  background: #0f172a;
+}
+
+html.dark-mode .boss-info h3 { color: #f1f5f9; }
+html.dark-mode .boss-info p { color: #fbbf24; }
+
+html.dark-mode .boss-modal-content {
+  background: #1e293b;
+}
+
+html.dark-mode .boss-header h2,
+html.dark-mode .boss-question-text {
+  color: #f1f5f9;
+}
+
+@media (max-width: 600px) {
+  .path-container { padding: 2rem 1rem; }
+  .level-lessons { grid-template-columns: 1fr; }
+  .level-boss { flex-direction: column; align-items: stretch; }
+  .boss-btn { width: 100%; }
+}
