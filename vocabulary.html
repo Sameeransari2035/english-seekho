@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vocabulary - English Seekho</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="css/style.css">
   <script src="js/dark-mode.js"></script>
 </head>
+
 <body>
 
   <!-- Navbar -->
@@ -29,6 +31,7 @@
       <li><a href="game.html">Game</a></li>
       <li><a href="speaking.html">Speaking</a></li>
       <li><a href="reading.html">Reading</a></li>
+      <li><a href="courses.html">Courses</a></li>
       <li><a href="leaderboard.html">Leaderboard</a></li>
       <li><a href="dashboard.html">Dashboard</a></li>
     </ul>
@@ -42,15 +45,61 @@
 
   <!-- Vocabulary Container -->
   <main class="vocab-container">
+    
+    <!-- 👇 NAYA: Flashcard Mode Button -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <button id="startFlashcardBtn" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+        🃏 Flashcard Mode Shuru Karein
+      </button>
+    </div>
+
     <div class="vocab-grid" id="vocabGrid">
       <!-- Words JavaScript se aayenge -->
     </div>
   </main>
 
-    <!-- New Professional Footer -->
+  <!-- 👇 NAYA: Flashcard Modal (Popup) -->
+  <div id="flashcardModal" class="flashcard-modal" style="display: none;">
+    <div class="flashcard-modal-content">
+      <div class="flashcard-header">
+        <span id="cardCounter" style="font-weight: 600; color: var(--primary-dark);">Card 1 / 10</span>
+        <button id="closeFlashcardBtn" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gray);">✖</button>
+      </div>
+
+      <!-- The 3D Flip Card -->
+      <div class="flip-card" id="flipCard">
+        <div class="flip-card-inner">
+          
+          <!-- Front Side (English Word) -->
+          <div class="flip-card-front">
+            <h2 id="flashWord" style="font-size: 2.5rem; color: var(--primary-dark);">Word</h2>
+            <p style="color: var(--gray); margin-top: 1rem;">(Card par click karke meaning dekhein)</p>
+          </div>
+          
+          <!-- Back Side (Hindi Meaning + Example) -->
+          <div class="flip-card-back">
+            <h3 id="flashHindi" style="font-size: 1.8rem; margin-bottom: 1rem;">Hindi Meaning</h3>
+            <p id="flashMeaning" style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #374151;">English Meaning</p>
+            <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 10px;">
+              <p id="flashExample" style="font-style: italic; color: var(--dark);">Example sentence</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="flashcard-actions">
+        <button id="prevCardBtn" class="btn btn-secondary">← Pichla</button>
+        <button id="nextCardBtn" class="btn btn-primary">Aagla →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Professional Footer -->
   <footer class="footer">
     <div class="footer-container">
-      
+
       <div class="footer-col">
         <h3>📚 English Seekho</h3>
         <p>Hindi se English seekhne ka sabse aasaan tarika. Rozana practice karo aur apni English sudharo.</p>
@@ -78,7 +127,7 @@
       </div>
 
     </div>
-    
+
     <div class="footer-bottom">
       <p>© 2026 English Seekho | All Rights Reserved</p>
     </div>
@@ -88,7 +137,7 @@
   <script src="js/vocabulary.js"></script>
   <script src="js/navbar.js"></script>
   <script src="js/nav-updater.js"></script>
-    <script src="js/toast.js"></script>
+  <script src="js/toast.js"></script>
 </body>
-</body>
+
 </html>

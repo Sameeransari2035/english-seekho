@@ -59,6 +59,13 @@ function shuffleArray(array) {
 // INIT
 // ============================================
 function initQuiz() {
+
+  if (!localStorage.getItem('currentUser')) {
+    alert("⚠️ Quiz khelne ke liye pehle Login karein!");
+    window.location.href = 'login.html';
+    return;
+  }
+
   totalQSpan.textContent = quizQuestions.length;
   currentQuestionIndex = 0;
   score = 0;
@@ -154,9 +161,13 @@ function showResults() {
   document.getElementById('finalScore').textContent = score;
   document.getElementById('maxScore').textContent = maxScore;
 
-  const percentage = (score / maxScore) * 100;
+    const percentage = (score / maxScore) * 100;
+  
   let message = '';
+  
   if (percentage === 100) {
+    // 👇 Badge save karo
+    localStorage.setItem('perfectQuiz', 'true');
     message = '🌟 Perfect! Tum toh genius ho!';
   } else if (percentage >= 80) {
     message = '🎉 Bahut badhiya! Thodi si aur practice!';
@@ -165,6 +176,7 @@ function showResults() {
   } else {
     message = '💪 Koi baat nahi! Lessons padhkar dobara try karo!';
   }
+  
   document.getElementById('resultMessage').textContent = message;
 
   saveProgress(score);
@@ -188,17 +200,27 @@ function showResults() {
   }
 }
 
-// ============================================
+/// ============================================
 // SAVE PROGRESS
 // ============================================
 function saveProgress(earnedPoints) {
+  // 1. LocalStorage mein points save karo
   let totalPoints = parseInt(localStorage.getItem('points') || 0) + earnedPoints;
   localStorage.setItem('points', totalPoints);
 
+  // 2. Quiz count badhao
   let quizCount = parseInt(localStorage.getItem('quizCount') || 0) + 1;
   localStorage.setItem('quizCount', quizCount);
 
+  // 3. Aaj ki date playedDates mein add karo (calendar ke liye)
+  let playedDates = JSON.parse(localStorage.getItem('playedDates') || '[]');
   const today = new Date().toDateString();
+  if (!playedDates.includes(today)) {
+    playedDates.push(today);
+    localStorage.setItem('playedDates', JSON.stringify(playedDates));
+  }
+
+  // 4. Streak calculate karo
   const lastPlayed = localStorage.getItem('lastPlayed');
   let streak = parseInt(localStorage.getItem('streak') || 0);
 
@@ -207,14 +229,15 @@ function saveProgress(earnedPoints) {
     yesterday.setDate(yesterday.getDate() - 1);
     streak = (lastPlayed === yesterday.toDateString()) ? streak + 1 : 1;
     localStorage.setItem('streak', streak);
-    localStorage.setItem('lastPlayed', today);
   }
+  localStorage.setItem('lastPlayed', today);
 
+  // 5. Firebase mein save karo (agar logged in hai)
   const currentUser = localStorage.getItem('currentUser');
   if (currentUser && window.firebaseDB) {
     const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
     const userRef = window.firebaseRef(window.firebaseDB, 'users/' + safeEmail);
-    
+
     window.firebaseGet(userRef).then((snapshot) => {
       let fbPoints = 0;
       let fbQuizCount = 0;

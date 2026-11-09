@@ -20,8 +20,38 @@ function loadDashboard() {
 
   document.getElementById('dashEmail').textContent = currentUser;
 
+  // 👇 NAYA: Firebase se points fetch karke localStorage sync karo
+  if (window.firebaseDB) {
+    const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
+    const userRef = window.firebaseRef(window.firebaseDB, 'users/' + safeEmail);
+    
+    window.firebaseGet(userRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        // Firebase points ko localStorage mein sync karo
+        if (data.points !== undefined) {
+          localStorage.setItem('points', data.points);
+        }
+        if (data.quizCount !== undefined) {
+          localStorage.setItem('quizCount', data.quizCount);
+        }
+      }
+      // Sync ke baad UI update karo
+      renderDashboardUI(currentUser);
+    }).catch(() => {
+      renderDashboardUI(currentUser); // Firebase fail ho toh localStorage se
+    });
+  } else {
+    renderDashboardUI(currentUser);
+  }
+}
+
+// Purana dashboard code is function mein move karo
+function renderDashboardUI(currentUser) {
   const points = parseInt(localStorage.getItem('points') || 0);
   const quizCount = parseInt(localStorage.getItem('quizCount') || 0);
+  
+  // ... baaki ka existing code (level calc, rank, calendar) yahan rakho
 
   document.getElementById('dashPoints').textContent = points;
   document.getElementById('dashQuizCount').textContent = quizCount;
@@ -53,7 +83,8 @@ function loadDashboard() {
   }
 
   calculateRank(currentUser);
-  renderCalendar(); // Calendar render karo
+  renderCalendar();
+  renderBadges();  // Calendar render karo
 }
 
 // ============================================
@@ -111,9 +142,13 @@ function initFeedback() {
 // ============================================
 // CALCULATE RANK
 // ============================================
-function calculateRank(currentEmail) {
+function calculateRank(currentEmail, retryCount = 0) {
   if (!window.firebaseDB) {
-    setTimeout(() => calculateRank(currentEmail), 200);
+    if (retryCount > 20) { // 4 second baad give up
+      document.getElementById('dashRank').textContent = '-';
+      return;
+    }
+    setTimeout(() => calculateRank(currentEmail, retryCount + 1), 200);
     return;
   }
 
@@ -162,7 +197,7 @@ function logoutUser() {
 }
 
 // ============================================
-// WEEKLY STREAK CALENDAR
+// WEEKLY STREAK CALENDAR (FIXED)
 // ============================================
 function renderCalendar() {
   const calendarGrid = document.getElementById('calendarGrid');
@@ -171,12 +206,37 @@ function renderCalendar() {
 
   if (!calendarGrid) return;
 
+  // 👇 NAYA: playedDates array use karo
+  let playedDates = [];
+  try {
+    playedDates = JSON.parse(localStorage.getItem('playedDates') || '[]');
+  } catch (e) {
+    playedDates = [];
+  }
+
+  // Purane lastPlayed ko bhi include karo (backward compatibility)
   const lastPlayed = localStorage.getItem('lastPlayed');
-  const streak = parseInt(localStorage.getItem('streak') || 0);
+  if (lastPlayed && !playedDates.includes(lastPlayed)) {
+    playedDates.push(lastPlayed);
+  }
+
+  // Streak calculate karo (aaj se peeche tak consecutive din)
+  let streak = 0;
+  const today = new Date();
+  for (let i = 0; i < 365; i++) {
+    const checkDate = new Date();
+    checkDate.setDate(today.getDate() - i);
+    if (playedDates.includes(checkDate.toDateString())) {
+      streak++;
+    } else {
+      break;
+    }
+  }
 
   if (streakCountEl) streakCountEl.textContent = streak;
+  localStorage.setItem('streak', streak);
 
-  const today = new Date();
+  // Month/Year header
   const currentMonth = today.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
   if (monthYearEl) monthYearEl.textContent = currentMonth;
 
@@ -188,12 +248,7 @@ function renderCalendar() {
     date.setDate(today.getDate() - i);
 
     const isToday = i === 0;
-    let isPlayed = false;
-
-    // Sirf exact match par tick lagao
-    if (lastPlayed && date.toDateString() === lastPlayed) {
-      isPlayed = true;
-    }
+    const isPlayed = playedDates.includes(date.toDateString()); // 👈 sahi check
 
     const dayBox = document.createElement('div');
     dayBox.className = `cal-day ${isToday ? 'today' : ''} ${isPlayed ? 'played' : ''}`;
@@ -205,6 +260,7 @@ function renderCalendar() {
     calendarGrid.appendChild(dayBox);
   }
 }
+
 // ============================================
 // START
 // ============================================
@@ -212,3 +268,55 @@ document.addEventListener('DOMContentLoaded', () => {
   loadDashboard();
   initFeedback();
 });
+
+
+// ============================================
+// BADGES SYSTEM
+// ============================================
+const allBadges = [
+  { id: 'first_steps', icon: '🌱', title: 'First Steps', desc: 'Pehli baar quiz khela', condition: (stats) => stats.quizCount >= 1 },
+  { id: 'century', icon: '💯', title: 'Century', desc: '100 points kamaye', condition: (stats) => stats.points >= 100 },
+  { id: 'streak_master', icon: '🔥', title: 'Streak Master', desc: '3 din lagatar practice ki', condition: (stats) => stats.streak >= 3 },
+  { id: 'grammar_guru', icon: '🧠', title: 'Grammar Guru', desc: 'Quiz mein 100% score', condition: (stats) => stats.perfectQuiz === true },
+  { id: 'challenge_champ', icon: '⚡', title: 'Challenger', desc: 'Daily Challenge pass kiya', condition: (stats) => stats.challengePassed === true },
+  { id: 'level_up', icon: '🚀', title: 'Level Up', desc: 'Beginner level cross kiya', condition: (stats) => stats.points >= 50 }
+];
+
+function renderBadges() {
+  const badgesGrid = document.getElementById('badgesGrid');
+  if (!badgesGrid) return;
+
+  // User ke current stats nikaalo
+  const stats = {
+    points: parseInt(localStorage.getItem('points') || 0),
+    quizCount: parseInt(localStorage.getItem('quizCount') || 0),
+    streak: parseInt(localStorage.getItem('streak') || 0),
+    perfectQuiz: localStorage.getItem('perfectQuiz') === 'true',
+    challengePassed: localStorage.getItem('challengePassed') === 'true'
+  };
+
+  badgesGrid.innerHTML = ''; // Clear before rendering
+
+  allBadges.forEach(badge => {
+    const isUnlocked = badge.condition(stats);
+    
+    // Agar unlocked hai, toh usko save kar lo taaki permanently unlock rahe
+    if (isUnlocked) {
+      localStorage.setItem(`badge_${badge.id}`, 'true');
+    }
+
+    // Check karo ki pehle se unlock hai kya (permanent)
+    const isPermanentlyUnlocked = localStorage.getItem(`badge_${badge.id}`) === 'true' || isUnlocked;
+
+    const card = document.createElement('div');
+    card.className = `badge-card ${isPermanentlyUnlocked ? 'unlocked' : 'locked'}`;
+    
+    card.innerHTML = `
+      <div class="badge-icon">${badge.icon}</div>
+      <div class="badge-title">${badge.title}</div>
+      <div class="badge-desc">${badge.desc}</div>
+    `;
+    
+    badgesGrid.appendChild(card);
+  });
+}

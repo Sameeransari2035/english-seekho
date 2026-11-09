@@ -617,17 +617,36 @@ if (lesson) {
     breadcrumbEl.textContent = lesson.title; 
   }
 
-  document.getElementById('lessonNum').textContent = lessonNum;
-  document.getElementById('lessonTitle').textContent = lesson.title;
-  document.getElementById('lessonContent').innerHTML = lesson.content;
+  // 👇 Yahan humne check laga diya hai ki element exist karta hai ya nahi
+  const lessonTitleEl = document.getElementById('lessonTitle');
+  if (lessonTitleEl) {
+    lessonTitleEl.textContent = lesson.title;
+  }
+
+  // 👇 Ye line error de rahi thi, isliye isko safe bana diya
+  const lessonNumEl = document.getElementById('lessonNum');
+  if (lessonNumEl) {
+    lessonNumEl.textContent = lessonNum;
+  }
+
+  const lessonContentEl = document.getElementById('lessonContent');
+  if (lessonContentEl) {
+    lessonContentEl.innerHTML = lesson.content;
+  }
+
 } else {
-  document.getElementById('lessonTitle').textContent = "Lesson nahi mila 😕";
-  document.getElementById('lessonContent').innerHTML =
-    '<p>Ye lesson available nahi hai. <a href="grammar.html">Saare lessons dekho</a>.</p>';
+  const lessonTitleEl = document.getElementById('lessonTitle');
+  if (lessonTitleEl) {
+    lessonTitleEl.textContent = "Lesson nahi mila 😕";
+  }
+  
+  const lessonContentEl = document.getElementById('lessonContent');
+  if (lessonContentEl) {
+    lessonContentEl.innerHTML = '<p>Ye lesson available nahi hai. <a href="grammar.html">Saare lessons dekho</a>.</p>';
+  }
 }
 
 // Lesson padhne par mark as read
-if (lesson) {
-  const lessonNum = params.get('lesson');
+if (lesson && params.get('lesson')) {
   localStorage.setItem(`lesson_${lessonNum}_read`, 'true');
 }

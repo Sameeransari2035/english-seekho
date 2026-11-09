@@ -14,27 +14,30 @@
 
   <!-- Firebase SDK (CDN) -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  // 👇 Yahan 'get' ko import karna zaroori hai
+  import { getDatabase, ref, onValue, push, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
-      authDomain: "english-seekho-v2.firebaseapp.com",
-      databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
-      projectId: "english-seekho-v2",
-      storageBucket: "english-seekho-v2.firebasestorage.app",
-      messagingSenderId: "393175002297",
-      appId: "1:393175002297:web:8ac546459c7fa803917f68"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
+    authDomain: "english-seekho-v2.firebaseapp.com",
+    databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
+    projectId: "english-seekho-v2",
+    storageBucket: "english-seekho-v2.firebasestorage.app",
+    messagingSenderId: "393175002297",
+    appId: "1:393175002297:web:8ac546459c7fa803917f68"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
 
-    window.firebaseDB = db;
-    window.firebaseRef = ref;
-    window.firebaseOnValue = onValue;
-    window.firebasePush = push;
-  </script>
+  // 👇 Sabhi functions ko window par attach karna zaroori hai
+  window.firebaseDB = db;
+  window.firebaseRef = ref;
+  window.firebaseOnValue = onValue;
+  window.firebasePush = push;
+  window.firebaseGet = get;  // 👈 Ye line missing thi!
+</script>
   <script src="js/dark-mode.js"></script>
 </head>
 
@@ -108,7 +111,7 @@
     </section>
 
 
-        <!-- Weekly Streak Calendar -->
+    <!-- Weekly Streak Calendar -->
     <section class="dash-section">
       <h2>🔥 Weekly Streak</h2>
       <div class="calendar-box">
@@ -119,6 +122,16 @@
         <div class="calendar-days" id="calendarGrid"></div>
       </div>
     </section>
+
+
+        <!-- 👇 NAYA: Badges Section -->
+    <section class="dash-section">
+      <h2>🏅 Tumhare Badges</h2>
+      <div class="badges-grid" id="badgesGrid">
+        <!-- Badges yahan JS se aayenge -->
+      </div>
+    </section>
+    <!-- 👆 NAYA SECTION KHATAM -->
 
     <!-- Feedback Section -->
     <section class="dash-section">
@@ -158,10 +171,10 @@
 
   </main>
 
-    <!-- New Professional Footer -->
+  <!-- New Professional Footer -->
   <footer class="footer">
     <div class="footer-container">
-      
+
       <div class="footer-col">
         <h3>📚 English Seekho</h3>
         <p>Hindi se English seekhne ka sabse aasaan tarika. Rozana practice karo aur apni English sudharo.</p>
@@ -189,7 +202,7 @@
       </div>
 
     </div>
-    
+
     <div class="footer-bottom">
       <p>© 2026 English Seekho | All Rights Reserved</p>
     </div>
@@ -198,9 +211,7 @@
   <script src="js/dashboard.js"></script>
   <script src="js/navbar.js"></script>
   <script src="js/nav-updater.js"></script>
-    <script src="js/toast.js"></script>
-</body>
-
+  <script src="js/toast.js"></script>
 </body>
 
 </html>

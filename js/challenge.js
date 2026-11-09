@@ -44,20 +44,60 @@ const quizScreen = document.getElementById('challengeQuiz');
 const resultScreen = document.getElementById('challengeResult');
 const alreadyPlayedScreen = document.getElementById('alreadyPlayed');
 
-// Check if already played
+// ============================================
+// CHECK IF ALREADY PLAYED
+// ============================================
 function initChallenge() {
+  const currentUser = localStorage.getItem('currentUser');
+
+  // Pehle localStorage check (fast)
   const lastPlayed = localStorage.getItem('dailyChallengeDate');
   if (lastPlayed === todayStr) {
-    startScreen.style.display = 'none';
-    quizScreen.style.display = 'none';
-    resultScreen.style.display = 'none';
-    alreadyPlayedScreen.style.display = 'block';
+    showAlreadyPlayed();
+    return;
+  }
+
+  // Agar user logged in hai, Firebase se bhi check karo
+  if (currentUser && window.firebaseDB) {
+    const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
+    const userRef = window.firebaseRef(window.firebaseDB, 'users/' + safeEmail);
+
+    window.firebaseGet(userRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        if (data.lastChallengeDate === todayStr) {
+          localStorage.setItem('dailyChallengeDate', todayStr);
+          showAlreadyPlayed();
+          return;
+        }
+      }
+      // Khel sakta hai
+      showStartScreen();
+    }).catch(() => {
+      showStartScreen();
+    });
   } else {
-    startScreen.style.display = 'block';
+    showStartScreen();
   }
 }
 
-// Start Challenge
+function showStartScreen() {
+  startScreen.style.display = 'block';
+  quizScreen.style.display = 'none';
+  resultScreen.style.display = 'none';
+  alreadyPlayedScreen.style.display = 'none';
+}
+
+function showAlreadyPlayed() {
+  startScreen.style.display = 'none';
+  quizScreen.style.display = 'none';
+  resultScreen.style.display = 'none';
+  alreadyPlayedScreen.style.display = 'block';
+}
+
+// ============================================
+// START CHALLENGE
+// ============================================
 document.getElementById('startChallengeBtn').onclick = () => {
   if (!localStorage.getItem('currentUser')) {
     alert("⚠️ Challenge khelne ke liye pehle Login karein!");
@@ -73,6 +113,9 @@ document.getElementById('startChallengeBtn').onclick = () => {
   loadQuestion();
 };
 
+// ============================================
+// LOAD QUESTION
+// ============================================
 function loadQuestion() {
   answered = false;
   document.getElementById('feedback').textContent = '';
@@ -88,7 +131,7 @@ function loadQuestion() {
 
   const optionsContainer = document.getElementById('optionsContainer');
   optionsContainer.innerHTML = '';
-  
+
   q.options.forEach((option, index) => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
@@ -98,6 +141,9 @@ function loadQuestion() {
   });
 }
 
+// ============================================
+// SELECT ANSWER
+// ============================================
 function selectAnswer(selectedIndex, btnElement) {
   if (answered) return;
   answered = true;
@@ -119,7 +165,7 @@ function selectAnswer(selectedIndex, btnElement) {
 
   allOptions.forEach(opt => opt.disabled = true);
   document.getElementById('nextBtn').style.display = 'inline-block';
-  
+
   if (currentQuestionIndex === challengeQuestions.length - 1) {
     document.getElementById('nextBtn').textContent = 'Results Dekho →';
   } else {
@@ -127,6 +173,9 @@ function selectAnswer(selectedIndex, btnElement) {
   }
 }
 
+// ============================================
+// NEXT BUTTON
+// ============================================
 document.getElementById('nextBtn').onclick = () => {
   currentQuestionIndex++;
   if (currentQuestionIndex < challengeQuestions.length) {
@@ -136,19 +185,27 @@ document.getElementById('nextBtn').onclick = () => {
   }
 };
 
+// ============================================
+// SHOW RESULTS + SAVE TO FIREBASE
+// ============================================
 function showResults() {
   quizScreen.style.display = 'none';
   resultScreen.style.display = 'block';
 
+  // LocalStorage mein aaj ki date save karo
   localStorage.setItem('dailyChallengeDate', todayStr);
 
   const maxScore = challengeQuestions.length * 20;
   document.getElementById('finalScore').textContent = score;
 
-  const percentage = (score / maxScore) * 100;
-  let message = '';
+   const percentage = (score / maxScore) * 100;
   
+  let message = '';
+
   if (percentage >= 80) {
+    // 👇 Badge ke liye save karo
+    localStorage.setItem('challengePassed', 'true');
+    
     message = '🌟 Shandar! Tumne challenge jeet liya aur double points kamaye!';
     document.getElementById('resultIcon').textContent = '🏆';
     document.getElementById('resultTitle').textContent = 'Challenge Passed!';
@@ -159,8 +216,9 @@ function showResults() {
     message = '💪 Koi baat nahi! Kal phir se try karein!';
     document.getElementById('resultIcon').textContent = '😅';
   }
-  document.getElementById('resultMessage').textContent = message;
-    if (percentage >= 80) {
+  
+  document.getElementById('resultMessage').textContent = message;  // Confetti
+  if (percentage >= 80) {
     setTimeout(() => {
       if (typeof confetti === 'function') {
         confetti({
@@ -173,26 +231,41 @@ function showResults() {
     }, 300);
   }
 
-  // Save to LocalStorage
+  // ============================================
+  // SAVE TO LOCALSTORAGE
+  // ============================================
   let totalPoints = parseInt(localStorage.getItem('points') || 0);
   totalPoints += score;
   localStorage.setItem('points', totalPoints);
 
-  // Save to Firebase
+  // ============================================
+  // SAVE TO FIREBASE (✅ SAHI JAGAH PAR)
+  // ============================================
   const currentUser = localStorage.getItem('currentUser');
   if (currentUser && window.firebaseDB) {
     const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
     const userRef = window.firebaseRef(window.firebaseDB, 'users/' + safeEmail);
+
     window.firebaseGet(userRef).then((snapshot) => {
       let fbPoints = 0;
-      if (snapshot.exists()) fbPoints = snapshot.val().points || 0;
+      if (snapshot.exists()) {
+        fbPoints = snapshot.val().points || 0;
+      }
       window.firebaseSet(userRef, {
         points: fbPoints + score,
         email: currentUser,
+        lastChallengeDate: todayStr,  // ✅ naya field
         lastUpdated: Date.now()
+      }).then(() => {
+        console.log('✅ Challenge result saved to Firebase');
+      }).catch((err) => {
+        console.error('❌ Firebase save error:', err);
       });
     });
   }
 }
 
+// ============================================
+// START
+// ============================================
 document.addEventListener('DOMContentLoaded', initChallenge);

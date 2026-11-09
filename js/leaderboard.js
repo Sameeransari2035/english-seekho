@@ -40,27 +40,37 @@ function initLeaderboard() {
 
     renderPodium(leaderboard, podium);
 
-    rankingList.innerHTML = '';
+       rankingList.innerHTML = '';
     leaderboard.forEach((entry, index) => {
       const rank = index + 1;
       const medal = getMedal(rank);
       const name = entry.email ? entry.email.split('@')[0] : 'User';
       
+      // Check if this is the current user
+      const currentUser = localStorage.getItem('currentUser');
+      const isCurrentUser = currentUser && entry.email === currentUser;
+
       const row = document.createElement('div');
       row.className = 'ranking-row' + (rank <= 3 ? ' top-' + rank : '');
+      
+      // 👇 NAYA: Agar current user hai, toh border highlight karo
+      if (isCurrentUser) {
+        row.style.border = "2px solid var(--primary)";
+        row.style.background = "rgba(99, 102, 241, 0.05)";
+      }
+
       row.innerHTML = `
         <span class="rank-number">${medal || rank}</span>
-        <span class="rank-name">${name}</span>
+        <span class="rank-name">${name} ${isCurrentUser ? '<strong style="color: var(--primary);">(You)</strong>' : ''}</span>
         <span class="rank-score">${entry.points || 0} pts</span>
       `;
       rankingList.appendChild(row);
     });
   });
 }
-
 function renderPodium(leaderboard, container) {
   container.innerHTML = '';
-  const order = [1, 0, 2];
+  const order = [1, 0, 2]; // Visual order: 2nd, 1st, 3rd
   const heights = ['small', 'big', 'medium'];
 
   order.forEach((pos, visualIndex) => {
@@ -69,14 +79,25 @@ function renderPodium(leaderboard, container) {
     const heightClass = heights[visualIndex];
 
     const el = document.createElement('div');
-    el.className = `podium-item podium-${heightClass}`;
+    // 👇 NAYA: animation class add ki hai
+    el.className = `podium-item podium-${heightClass} animate-pop`; 
 
     if (entry) {
       const medal = getMedal(rank);
       const name = entry.email ? entry.email.split('@')[0] : 'User';
+      
+      // Check if this is the current user
+      const currentUser = localStorage.getItem('currentUser');
+      const isCurrentUser = currentUser && entry.email === currentUser;
+      
+      // 👇 NAYA: Current user ke liye special styling
+      const nameHTML = isCurrentUser 
+        ? `<span style="color: var(--accent);">${name} (You)</span>` 
+        : name;
+
       el.innerHTML = `
-        <div class="podium-medal">${medal}</div>
-        <div class="podium-name">${name}</div>
+        <div class="podium-medal animate-bounce">${medal}</div>
+        <div class="podium-name">${nameHTML}</div>
         <div class="podium-score">${entry.points || 0} pts</div>
         <div class="podium-stand podium-stand-${rank}">
           <span class="podium-rank">${rank}</span>

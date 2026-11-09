@@ -120,10 +120,16 @@ body {
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: all 0.3s;
   border: none;
   cursor: pointer;
   font-family: inherit;
+}
+
+.btn:active {
+  transform: scale(0.92); /* Button thoda chota ho jayega */
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2); /* Andar ki taraf shadow aayegi */
 }
 
 .btn-primary {
@@ -1258,29 +1264,41 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.35s ease, padding 0.35s ease;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    /* Naya shadow aur border */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+    border-bottom: 3px solid var(--primary); 
     border-radius: 0 0 12px 12px;
     z-index: 1050;
   }
+  
   .nav-links.active {
     max-height: 80vh;
     padding: 0.8rem 0;
     overflow-y: auto;
   }
+  
   .nav-links li {
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
+  
   .nav-links a {
     display: block;
-    padding: 1rem 1.5rem;
+    /* Naya spacing */
+    padding: 1.1rem 1.5rem; 
     font-size: 1rem;
     border-radius: 0;
     border-left: 3px solid transparent;
   }
+  
   .nav-links a:hover {
     border-left-color: var(--primary);
     background: rgba(99, 102, 241, 0.08);
+  }
+
+  /* 👇 NAYA: Click karne par background highlight */
+  .nav-links a:active {
+    background: rgba(99, 102, 241, 0.15);
   }
 
   /* Hero */
@@ -3514,4 +3532,343 @@ html.dark-mode .boss-question-text {
   .level-lessons { grid-template-columns: 1fr; }
   .level-boss { flex-direction: column; align-items: stretch; }
   .boss-btn { width: 100%; }
+}
+
+/* ============================================
+   COURSES PAGE
+   ============================================ */
+.courses-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.course-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(99, 102, 241, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.course-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: var(--light);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.course-card h3 {
+  font-size: 1.25rem;
+  color: var(--dark);
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.course-card p {
+  color: var(--gray);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Button ko neeche align karne ke liye */
+}
+
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--primary-dark);
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.05);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+}
+
+/* Dark Mode */
+html.dark-mode .course-card {
+  background: #1e293b;
+  border-color: rgba(129, 140, 248, 0.15);
+}
+
+html.dark-mode .course-icon {
+  background: #0f172a;
+}
+
+html.dark-mode .course-card h3 {
+  color: #f1f5f9;
+}
+
+html.dark-mode .course-meta {
+  background: rgba(129, 140, 248, 0.1);
+  color: #a5b4fc;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .courses-container {
+    padding: 2rem 1rem;
+  }
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+/* ============================================
+   FLASHCARD VOCABULARY GAME
+   ============================================ */
+.flashcard-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.flashcard-modal-content {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.flashcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* 3D Flip Card Magic */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Jab .flipped class lagegi tab card paltega */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid rgba(99, 102, 241, 0.2);
+}
+
+.flip-card-front {
+  background: linear-gradient(135deg, #f9fafb, #ffffff);
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, #e0e7ff, #ffffff);
+  transform: rotateY(180deg);
+}
+
+.flashcard-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.flashcard-actions .btn {
+  flex: 1;
+}
+
+/* Dark Mode */
+html.dark-mode .flashcard-modal-content { background: #1e293b; }
+html.dark-mode .flip-card-front { background: #0f172a; border-color: #334155; }
+html.dark-mode .flip-card-back { background: #1e293b; border-color: #334155; }
+html.dark-mode .flip-card-front h2 { color: #a5b4fc !important; }
+html.dark-mode .flip-card-back h3, html.dark-mode .flip-card-back p { color: #f1f5f9 !important; }
+html.dark-mode .flashcard-modal-content button { color: #cbd5e1; }
+
+
+/* ============================================
+   BADGES SECTION (Dashboard)
+   ============================================ */
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1.2rem;
+}
+
+.badge-card {
+  background: var(--white);
+  padding: 1.5rem 1rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  position: relative;
+}
+
+/* Unlocked Badge */
+.badge-card.unlocked {
+  border-color: var(--primary);
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.05), var(--white));
+}
+
+.badge-card.unlocked:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.badge-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.badge-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--dark);
+  margin-bottom: 0.3rem;
+}
+
+.badge-desc {
+  font-size: 0.75rem;
+  color: var(--gray);
+  line-height: 1.3;
+}
+
+/* Locked Badge */
+.badge-card.locked {
+  opacity: 0.6;
+  background: #f3f4f6;
+}
+
+.badge-card.locked .badge-icon {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.badge-card.locked::after {
+  content: '🔒';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1rem;
+}
+
+/* Dark Mode */
+html.dark-mode .badge-card {
+  background: #1e293b;
+}
+
+html.dark-mode .badge-card.unlocked {
+  background: linear-gradient(180deg, rgba(129, 140, 248, 0.1), #1e293b);
+  border-color: #818cf8;
+}
+
+html.dark-mode .badge-title {
+  color: #f1f5f9;
+}
+
+html.dark-mode .badge-card.locked {
+  background: #0f172a;
+}
+
+@media (max-width: 600px) {
+  .badges-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .badge-icon {
+    font-size: 2rem;
+  }
+  .badge-title {
+    font-size: 0.85rem;
+  }
+  .badge-desc {
+    font-size: 0.7rem;
+  }
+}
+
+/* Smooth Page Load Transition */
+body {
+  animation: pageFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   LEADERBOARD ANIMATIONS & EFFECTS
+   ============================================ */
+
+/* Podium 3D Pop-in Animation */
+.animate-pop {
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Medal Bounce Animation */
+.animate-bounce {
+  display: inline-block;
+  animation: bounceMedal 2s infinite ease-in-out;
+}
+
+@keyframes bounceMedal {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Top 1 ke liye thoda special glow */
+.podium-stand-1 {
+  box-shadow: 0 -5px 20px rgba(251, 191, 36, 0.5);
 }

@@ -2,89 +2,89 @@
 <html lang="hi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Scramble - English Seekho</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Scramble - English Seekho</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css">
-      <script src="js/dark-mode.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/dark-mode.js"></script>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">📚 English Seekho</div>
-        <!-- Ye button add karo -->
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="grammar.html">Grammar</a></li>
-            <li><a href="vocabulary.html">Vocabulary</a></li>
-            <li><a href="quiz.html">Quiz</a></li>
-            <li><a href="challenge.html">Daily Challenge</a></li>
-            <li><a href="game.html">Game</a></li>
-            <li><a href="speaking.html">Speaking</a></li>
-            <li><a href="reading.html">Reading</a></li>
-            <li><a href="leaderboard.html">Leaderboard</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-        
-        </ul>
-    </nav>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📚 English Seekho</div>
+    <!-- Ye button add karo -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="grammar.html">Grammar</a></li>
+      <li><a href="vocabulary.html">Vocabulary</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="challenge.html">Daily Challenge</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
 
-    <!-- Page Header -->
-    <header class="page-header">
-        <h1>🎮 Word Scramble</h1>
-        <p>Ulte-pulte letters ko sahi karke word banao!</p>
-    </header>
+    </ul>
+  </nav>
 
-    <!-- Game Container -->
-    <main class="game-container">
-        <div class="game-card">
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1>🎮 Word Scramble</h1>
+    <p>Ulte-pulte letters ko sahi karke word banao!</p>
+  </header>
 
-            <!-- Game Stats -->
-            <div class="game-stats">
-                <span>⭐ Score: <strong id="gameScore">0</strong></span>
-                <span>❤️ Lives: <strong id="gameLives">3</strong></span>
-            </div>
+  <!-- Game Container -->
+  <main class="game-container">
+    <div class="game-card">
 
-            <!-- Hint -->
-            <div class="hint-box" id="hintBox">
-                <!-- Hint yahan aayega -->
-            </div>
+      <!-- Game Stats -->
+      <div class="game-stats">
+        <span>⭐ Score: <strong id="gameScore">0</strong></span>
+        <span>❤️ Lives: <strong id="gameLives">3</strong></span>
+      </div>
 
-            <!-- Scrambled Word -->
-            <h2 class="scrambled-word" id="scrambledWord">L O A D I N G</h2>
+      <!-- Hint -->
+      <div class="hint-box" id="hintBox">
+        <!-- Hint yahan aayega -->
+      </div>
 
-            <!-- Input -->
-            <input type="text" id="userInput" class="game-input" placeholder="Yahan sahi word likhein..."
-                autocomplete="off" autocapitalize="off" spellcheck="false">
+      <!-- Scrambled Word -->
+      <h2 class="scrambled-word" id="scrambledWord">L O A D I N G</h2>
 
-            <!-- Buttons -->
-            <div class="game-actions">
-                <button class="btn btn-primary" id="submitBtn">Check Karo</button>
-                <button class="btn btn-secondary" id="skipBtn">Skip / Next</button>
-            </div>
+      <!-- Input -->
+      <input type="text" id="userInput" class="game-input" placeholder="Yahan sahi word likhein..." autocomplete="off"
+        autocapitalize="off" spellcheck="false">
 
-            <!-- Feedback -->
-            <div class="game-feedback" id="gameFeedback"></div>
+      <!-- Buttons -->
+      <div class="game-actions">
+        <button class="btn btn-primary" id="submitBtn">Check Karo</button>
+        <button class="btn btn-secondary" id="skipBtn">Skip / Next</button>
+      </div>
 
-        </div>
-    </main>
+      <!-- Feedback -->
+      <div class="game-feedback" id="gameFeedback"></div>
 
-      <!-- New Professional Footer -->
+    </div>
+  </main>
+
+  <!-- New Professional Footer -->
   <footer class="footer">
     <div class="footer-container">
-      
+
       <div class="footer-col">
         <h3>📚 English Seekho</h3>
         <p>Hindi se English seekhne ka sabse aasaan tarika. Rozana practice karo aur apni English sudharo.</p>
@@ -112,19 +112,17 @@
       </div>
 
     </div>
-    
+
     <div class="footer-bottom">
       <p>© 2026 English Seekho | All Rights Reserved</p>
     </div>
   </footer>
 
-    <!-- Game JS -->
-    <script src="js/game.js"></script>
-<script src="js/navbar.js"></script> 
- <script src="js/nav-updater.js"></script>   
-   <script src="js/toast.js"></script>
-</body>
-
+  <!-- Game JS -->
+  <script src="js/game.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/nav-updater.js"></script>
+  <script src="js/toast.js"></script>
 </body>
 
 </html>
