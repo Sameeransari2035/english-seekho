@@ -40,6 +40,8 @@ function initLeaderboard() {
 
     renderPodium(leaderboard, podium);
 
+    checkAndShowRankToast(leaderboard);
+
        rankingList.innerHTML = '';
     leaderboard.forEach((entry, index) => {
       const rank = index + 1;
@@ -122,6 +124,48 @@ function getMedal(rank) {
   if (rank === 2) return '🥈';
   if (rank === 3) return '🥉';
   return '';
+}
+
+// ============================================
+// TOP 3 RANK TOAST NOTIFICATION
+// ============================================
+function checkAndShowRankToast(leaderboard) {
+  const currentUser = localStorage.getItem('currentUser');
+  if (!currentUser) return; // Agar logged in nahi hai toh kuch mat karo
+
+  // Current user ka rank dhoondho
+  let userRank = -1;
+  for (let i = 0; i < leaderboard.length; i++) {
+    if (leaderboard[i].email === currentUser) {
+      userRank = i + 1; // Rank 1-based index hai
+      break;
+    }
+  }
+
+  // Agar user Top 3 mein hai
+  if (userRank > 0 && userRank <= 3) {
+    // Check karo ki pehle se notification dikha chuke hain kya (taaki har refresh par na aaye)
+    const lastNotifiedRank = localStorage.getItem('lastRankToast');
+    
+    if (lastNotifiedRank !== String(userRank)) {
+      let medal = userRank === 1 ? '🥇' : userRank === 2 ? '🥈' : '🥉';
+      let message = `Congratulations! Aap ab Leaderboard mein Rank ${userRank} par hain ${medal}`;
+      
+      // Agar showToast function available hai toh dikhao
+      if (typeof showToast === 'function') {
+        // Thoda delay taaki page load ho jaye pehle
+        setTimeout(() => {
+          showToast(message, 'success');
+        }, 1000); 
+      }
+
+      // Save kar lo taaki dobara same rank par toast na aaye
+      localStorage.setItem('lastRankToast', userRank);
+    }
+  } else {
+    // Agar user Top 3 se bahar chala gaya, toh notification reset karo
+    localStorage.removeItem('lastRankToast');
+  }
 }
 
 initLeaderboard();
