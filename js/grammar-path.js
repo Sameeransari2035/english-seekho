@@ -3,11 +3,11 @@
 // ============================================
 const pathData = [
     {
-    level: 1,
+   level: 1,
     name: "Beginner",
     icon: "🌱",
     color: "#10b981",
-    lessons: [1, 2, 3, 4, 16, 17, 18, 19, 20, 21], // 👈 Yahan naye lesson numbers add karo
+    lessons: Array.from({length: 25}, (_, i) => i + 1), // Lessons 1 se 25
     boss: {
       title: "Beginner Boss",
       icon: "👾",
@@ -25,7 +25,7 @@ const pathData = [
     name: "Intermediate",
     icon: "🚀",
     color: "#6366f1",
-    lessons: [5, 6, 7, 8],
+    lessons: Array.from({length: 25}, (_, i) => i + 26), // Lessons 26 se 50
     boss: {
       title: "Intermediate Boss",
       icon: "👹",
@@ -41,7 +41,7 @@ const pathData = [
     name: "Advanced",
     icon: "⭐",
     color: "#f59e0b",
-    lessons: [9, 10, 11, 12],
+    lessons: Array.from({length: 25}, (_, i) => i + 51), // Lessons 51 se 75
     boss: {
       title: "Advanced Boss",
       icon: "🐉",
@@ -53,11 +53,11 @@ const pathData = [
     }
   },
   {
-    level: 4,
+   level: 4,
     name: "Master",
     icon: "👑",
     color: "#ec4899",
-    lessons: [13, 14, 15],
+    lessons: Array.from({length: 25}, (_, i) => i + 76), // Lessons 76 se 100
     boss: {
       title: "Master Boss",
       icon: "👺",

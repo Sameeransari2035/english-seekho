@@ -51,9 +51,24 @@ function updateNavbar() {
 
 function logoutFromNavbar() {
   if (confirm("Kya aap sach mein logout karna chahte hain?")) {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('userName');
-    if (typeof showToast === 'function') showToast("Successfully logout ho gaye!", "success");
-    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+    // Agar Firebase Auth available hai toh signOut karo
+    if (window.firebaseAuth) {
+       window.firebaseSignOut(window.firebaseAuth).then(() => {
+        if (typeof clearLocalData === 'function') clearLocalData();        else {
+          localStorage.removeItem('currentUser');
+          localStorage.removeItem('userName');
+        }
+        
+        if (typeof showToast === 'function') showToast("Successfully logout ho gaye!", "success");
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+      });
+    } else {
+      if (typeof clearLocalData === 'function') clearLocalData();
+      else {
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('userName');
+      }
+      setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+    }
   }
 }

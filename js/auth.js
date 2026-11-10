@@ -171,6 +171,57 @@ function syncUserDataFromFirebase(email) {
   });
 }
 
+
+// ============================================
+// LOGOUT & DATA CLEANUP
+// ============================================
+function logoutUser() {
+  if (confirm("Kya aap sach mein logout karna chahte hain?")) {
+    // Firebase se logout karo
+    if (window.firebaseAuth) {
+      window.firebaseAuth.signOut().then(() => {
+        // Saara local data clear karo taaki dusre user ko na dikhe
+        clearLocalData();
+        
+        if (typeof showToast === 'function') {
+          showToast("Successfully logout ho gaye! 👋", "success");
+        }
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+      });
+    } else {
+      // Agar Firebase fail ho jaye
+      clearLocalData();
+      window.location.href = 'index.html';
+    }
+  }
+}
+
+function clearLocalData() {
+  // User ka data hatao
+  localStorage.removeItem('currentUser');
+  localStorage.removeItem('userName');
+  
+  // Progress data hatao
+  localStorage.removeItem('points');
+  localStorage.removeItem('quizCount');
+  localStorage.removeItem('streak');
+  localStorage.removeItem('lastPlayed');
+  localStorage.removeItem('playedDates');
+  localStorage.removeItem('dailyChallengeDate');
+  localStorage.removeItem('perfectQuiz');
+  localStorage.removeItem('challengePassed');
+  localStorage.removeItem('lastRankToast');
+
+  // Saare badges aur lessons ka data hatao
+  for (let i = 1; i <= 30; i++) {
+    localStorage.removeItem(`lesson_${i}_read`);
+    localStorage.removeItem(`lesson_${i}_unlocked`);
+    localStorage.removeItem(`level_${i}_passed`);
+    localStorage.removeItem(`badge_${i}`);
+  }
+}
+
+
 // ============================================
 // ERROR HANDLER
 // ============================================

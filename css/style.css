@@ -4209,3 +4209,391 @@ html.dark-mode .danger-zone-card {
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
 }
+
+
+/* ============================================
+   WHATSAPP SHARE BUTTON
+   ============================================ */
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:hover {
+  background: #1DA851;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+}
+
+/* Dark mode adjust */
+html.dark-mode .btn-whatsapp {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+
+/* ============================================
+   NEW PREMIUM LANDING PAGE
+   ============================================ */
+
+/* New Hero Section */
+.hero-new {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  gap: 3rem;
+}
+
+.hero-content-new {
+  flex: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.hero-content-new h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.text-gradient {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-content-new p {
+  font-size: 1.15rem;
+  color: var(--gray);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.btn-large {
+  padding: 1.1rem 2.2rem;
+  font-size: 1.05rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.hero-image {
+  flex: 1;
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 4px solid var(--white);
+}
+
+/* Stats Section */
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: var(--shadow-sm);
+  margin-top: -3rem; /* Hero ke upar overlap karne ke liye */
+  position: relative;
+  z-index: 10;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.stat-box {
+  text-align: center;
+}
+
+.stat-box h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.3rem;
+}
+
+.stat-box p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+/* Features Section */
+.features-new {
+  max-width: 1100px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.features-new h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--gray);
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+.feature-grid-new {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card-new {
+  background: var(--white);
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  transition: all 0.3s;
+  border: 1px solid rgba(99, 102, 241, 0.08);
+}
+
+.feature-card-new:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature-card-new h3 {
+  font-size: 1.2rem;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.feature-card-new p {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Testimonials Section */
+.testimonials {
+  max-width: 1000px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 3rem;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  border: 1px solid rgba(99, 102, 241, 0.08);
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card p {
+  font-size: 1rem;
+  color: var(--dark);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: var(--gradient);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.user-info h4 {
+  color: var(--dark);
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.user-info span {
+  color: var(--gray);
+  font-size: 0.85rem;
+}
+
+/* Dark Mode */
+html.dark-mode .stats-section,
+html.dark-mode .feature-card-new,
+html.dark-mode .testimonial-card {
+  background: #1e293b;
+  border-color: rgba(129, 140, 248, 0.15);
+}
+
+html.dark-mode .hero-content-new h1,
+html.dark-mode .features-new h2,
+html.dark-mode .testimonials h2,
+html.dark-mode .feature-card-new h3,
+html.dark-mode .user-info h4,
+html.dark-mode .testimonial-card p {
+  color: #f1f5f9;
+}
+
+html.dark-mode .icon-box {
+  background: rgba(129, 140, 248, 0.15);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .hero-new {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .hero-content-new h1 {
+    font-size: 2.5rem;
+  }
+  .hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stats-section {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-content-new h1 {
+    font-size: 2rem;
+  }
+  .hero-content-new p {
+    font-size: 1rem;
+  }
+  .btn-large {
+    width: 100%;
+    text-align: center;
+  }
+  .stat-box h2 {
+    font-size: 2rem;
+  }
+  .features-new, .testimonials {
+    margin: 3rem auto;
+  }
+}
+
+
+/* ============================================
+   DARK MODE TOGGLE (Navbar / Mobile Menu Fix)
+   ============================================ */
+
+/* Mobile menu ke andar button ki styling */
+.nav-theme-item {
+  display: none; /* Desktop par hide rahega */
+}
+
+@media (max-width: 600px) {
+  /* Mobile par is item ko dikhao */
+  .nav-theme-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: #f8fafc; /* Thoda alag background taaki highlight ho */
+  }
+
+  /* Button ka size thoda bada karo mobile par */
+  .nav-theme-item .theme-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    margin: 0; /* Default margin hatao */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  /* Dark mode mein mobile menu ka background change */
+  html.dark-mode .nav-theme-item {
+    background: #0f172a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Mobile par navbar ke bahar wale Theme Toggle ko chhipao */
+@media (max-width: 600px) {
+  .navbar > .theme-toggle {
+    display: none !important;
+  }
+}
+
+/* Desktop par Navbar Categories ko chhipao */
+@media (min-width: 601px) {
+  .nav-category {
+    display: none !important;
+  }
+}

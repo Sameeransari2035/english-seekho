@@ -270,3 +270,20 @@ function restartQuiz() {
 // START
 // ============================================
 initQuiz();
+
+
+// ============================================
+// WHATSAPP SHARE LOGIC (QUIZ)
+// ============================================
+function shareScore() {
+  const finalScore = document.getElementById('finalScore').textContent;
+  const maxScore = document.getElementById('maxScore').textContent;
+  
+  // Aapki website ka link
+  const websiteUrl = "https://sameeransari2035.github.io/english-seekho/";
+  
+  const message = `🚀 Maine English Seekho par Quiz khela aur ${finalScore}/${maxScore} points kamaye!\n\nTum bhi apni English test karo aur mujhse aage nikalne ki koshish karo:\n${websiteUrl}`;
+  
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+}

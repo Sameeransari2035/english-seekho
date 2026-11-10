@@ -2,17 +2,14 @@
 // GRAMMAR LESSON LOCK SYSTEM (Level-wise + Points)
 // ============================================
 
-// Points required per lesson (index 0 = Lesson 1)
-// Lessons 1-4 (Beginner) = FREE
-// Lessons 5-8 (Intermediate) = 50 points each
-// Lessons 9-12 (Advanced) = 100 points each
-// Lessons 13-15 (Master) = 150 points each
-const lessonCosts = [
-  0, 0, 0, 0,         // Lessons 1-4 (Beginner) - FREE
-  50, 50, 50, 50,     // Lessons 5-8 (Intermediate) - 50 pts
-  100, 100, 100, 100, // Lessons 9-12 (Advanced) - 100 pts
-  150, 150, 150       // Lessons 13-15 (Master) - 150 pts
-];
+
+const lessonCosts = Array.from({length: 100}, (_, i) => {
+  if (i < 4) return 0;       // Pehle 4 free
+  if (i < 25) return 10;     // Beginner ke baaki 10 pts
+  if (i < 50) return 25;     // Intermediate ke 25 pts
+  if (i < 75) return 50;     // Advanced ke 50 pts
+  return 100;                // Master ke 100 pts
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const lessonCards = document.querySelectorAll('.lesson-card');

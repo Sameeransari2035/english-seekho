@@ -38,7 +38,20 @@ const questionsContainer = document.getElementById('questionsContainer');
 const resultSection = document.getElementById('resultSection');
 const submitAnswersBtn = document.getElementById('submitAnswersBtn');
 
+// ============================================
+// TEXT-TO-SPEECH (AUDIO) LOGIC
+// ============================================
+let speechSynthesis = window.speechSynthesis;
+let currentUtterance = null;
+let isPlaying = false;
+
 function loadNewStory() {
+  // Purani aawaz band karo
+  if (speechSynthesis && speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    resetAudioBtn();
+  }
+
   let newIndex;
   do {
     newIndex = Math.floor(Math.random() * stories.length);
@@ -137,4 +150,61 @@ submitAnswersBtn.onclick = () => {
   }
 };
 
-document.addEventListener('DOMContentLoaded', loadNewStory);
+// ============================================
+// AUDIO SETUP FUNCTION
+// ============================================
+function setupAudio() {
+  const playBtn = document.getElementById('playAudioBtn');
+  const speedSelect = document.getElementById('audioSpeed');
+  
+  if (!playBtn) return;
+
+  playBtn.onclick = () => {
+    if (isPlaying) {
+      speechSynthesis.cancel();
+      resetAudioBtn();
+    } else {
+      const story = stories[currentStoryIndex];
+      const textToRead = story.title + ". " + story.text;
+      
+      currentUtterance = new SpeechSynthesisUtterance(textToRead);
+      currentUtterance.lang = 'en-US';
+      currentUtterance.rate = parseFloat(speedSelect.value); 
+      
+      playBtn.innerHTML = '⏹️ Stop';
+      playBtn.classList.add('playing');
+      isPlaying = true;
+
+      currentUtterance.onend = () => {
+        resetAudioBtn();
+      };
+
+      speechSynthesis.speak(currentUtterance);
+    }
+  };
+
+  speedSelect.onchange = () => {
+    if (isPlaying) {
+      speechSynthesis.cancel();
+      resetAudioBtn();
+      setTimeout(() => playBtn.click(), 100);
+    }
+  };
+}
+
+function resetAudioBtn() {
+  const playBtn = document.getElementById('playAudioBtn');
+  if (playBtn) {
+    playBtn.innerHTML = '🔊 Listen';
+    playBtn.classList.remove('playing');
+    isPlaying = false;
+  }
+}
+
+// ============================================
+// START
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  loadNewStory();
+  setupAudio();
+});

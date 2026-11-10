@@ -269,3 +269,19 @@ function showResults() {
 // START
 // ============================================
 document.addEventListener('DOMContentLoaded', initChallenge);
+
+
+// ============================================
+// WHATSAPP SHARE LOGIC (CHALLENGE)
+// ============================================
+function shareChallengeScore() {
+  const finalScore = document.getElementById('finalScore').textContent;
+  
+  // Aapki website ka link
+  const websiteUrl = "https://sameeransari2035.github.io/english-seekho/";
+  
+  const message = `🔥 Maine aaj ka English Daily Challenge pass kiya aur ${finalScore} points kamaye!\n\nKya tum ye challenge solve kar sakte ho? Try karo:\n${websiteUrl}`;
+  
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+}

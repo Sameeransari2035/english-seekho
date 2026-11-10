@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reading Practice - English Seekho</title>
 
-    <!-- Primary SEO Meta Tags -->
+  <!-- Primary SEO Meta Tags -->
   <meta name="description" content="Hindi se English seekhne ka sabse aasaan tarika. Grammar padho, quiz khelo, games khelo aur apni English sudharo. Free English learning platform.">
   <meta name="keywords" content="English seekhna, Hindi se English, English grammar in Hindi, English speaking practice, English quiz, Learn English in Hindi">
   <meta name="author" content="English Seekho">
@@ -40,7 +40,7 @@
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
-        <ul class="nav-links" id="navLinks">
+    <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       
       <!-- 👇 Learn Section -->
@@ -74,7 +74,20 @@
   <main class="reading-container">
     <div class="reading-card" id="readingCard">
 
-      <h2 id="storyTitle">Loading...</h2>
+      <!-- 👇 NAYA: Story Title aur Audio Controls ek saath -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <h2 id="storyTitle" style="margin-bottom: 0;">Loading...</h2>
+        
+        <div class="audio-controls">
+          <button id="playAudioBtn" class="btn-audio">🔊 Listen</button>
+          <select id="audioSpeed" class="speed-select" title="Awaz ki speed">
+            <option value="1">1x</option>
+            <option value="0.8">0.8x</option>
+            <option value="0.5">0.5x</option>
+          </select>
+        </div>
+      </div>
+      <!-- 👆 NAYA: Story Title aur Audio Controls khatam -->
 
       <div id="storyText" class="story-text"></div>
 

@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz - English Seekho</title>
 
-    <!-- Primary SEO Meta Tags -->
-  <meta name="description" content="Hindi se English seekhne ka sabse aasaan tarika. Grammar padho, quiz khelo, games khelo aur apni English sudharo. Free English learning platform.">
-  <meta name="keywords" content="English seekhna, Hindi se English, English grammar in Hindi, English speaking practice, English quiz, Learn English in Hindi">
+  <!-- Primary SEO Meta Tags -->
+  <meta name="description"
+    content="Hindi se English seekhne ka sabse aasaan tarika. Grammar padho, quiz khelo, games khelo aur apni English sudharo. Free English learning platform.">
+  <meta name="keywords"
+    content="English seekhna, Hindi se English, English grammar in Hindi, English speaking practice, English quiz, Learn English in Hindi">
   <meta name="author" content="English Seekho">
 
   <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
@@ -16,13 +18,15 @@
   <meta property="og:url" content="https://sameeransari2035.github.io/english-seekho/">
   <meta property="og:title" content="English Seekho - Hindi se English Aasaan Tarike Se 🚀">
   <meta property="og:description" content="Grammar padho, quiz khelo, aur apni English sudharo. Bilkul free mein!">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:image"
+    content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="English Seekho - Hindi se English Aasaan Tarike Se 🚀">
   <meta name="twitter:description" content="Grammar padho, quiz khelo, aur apni English sudharo. Bilkul free mein!">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:image"
+    content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,39 +35,39 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- Firebase SDK (CDN) -->
   <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  // 👇 Auth ko bhi import karo
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-  import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    // 👇 Auth ko bhi import karo
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
-    authDomain: "english-seekho-v2.firebaseapp.com",
-    databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
-    projectId: "english-seekho-v2",
-    storageBucket: "english-seekho-v2.firebasestorage.app",
-    messagingSenderId: "393175002297",
-    appId: "1:393175002297:web:8ac546459c7fa803917f68"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
+      authDomain: "english-seekho-v2.firebaseapp.com",
+      databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
+      projectId: "english-seekho-v2",
+      storageBucket: "english-seekho-v2.firebasestorage.app",
+      messagingSenderId: "393175002297",
+      appId: "1:393175002297:web:8ac546459c7fa803917f68"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const auth = getAuth(app); // 👈 Auth initialize karo
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const auth = getAuth(app); // 👈 Auth initialize karo
 
-  window.firebaseDB = db;
-  window.firebaseRef = ref;
-  window.firebaseGet = get;
-  window.firebaseSet = set;
+    window.firebaseDB = db;
+    window.firebaseRef = ref;
+    window.firebaseGet = get;
+    window.firebaseSet = set;
 
-  // 👇 Ye line sabse zaroori hai: Firebase ko batao ki user logged in hai
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("✅ Firebase Auth Ready: " + user.email);
-    } else {
-      console.log("⚠️ User logged in nahi hai, points save nahi honge.");
-    }
-  });
-</script>
+    // 👇 Ye line sabse zaroori hai: Firebase ko batao ki user logged in hai
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("✅ Firebase Auth Ready: " + user.email);
+      } else {
+        console.log("⚠️ User logged in nahi hai, points save nahi honge.");
+      }
+    });
+  </script>
   <script src="js/dark-mode.js"></script>
 </head>
 
@@ -78,9 +82,9 @@
       <span></span>
       <span></span>
     </button>
-       <ul class="nav-links" id="navLinks">
+    <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
-      
+
       <!-- 👇 Learn Section -->
       <li class="nav-category">📖 Learn (Seekhein)</li>
       <li><a href="grammar.html">Grammar</a></li>
@@ -138,6 +142,9 @@
       <div class="result-message" id="resultMessage"></div>
       <div class="result-actions">
         <button class="btn btn-primary" onclick="restartQuiz()">🔄 Dobara Khelo</button>
+
+        <button class="btn btn-whatsapp" onclick="shareScore()">💬 WhatsApp Par Share Karein</button>
+
         <a href="grammar.html" class="btn btn-secondary">📖 Grammar Padho</a>
       </div>
     </div>
@@ -187,7 +194,7 @@
   <script src="js/navbar.js"></script>
   <script src="js/nav-updater.js"></script>
   <script src="js/toast.js"></script>
-  
+
 </body>
 
 </html>
