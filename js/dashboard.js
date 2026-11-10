@@ -267,6 +267,7 @@ function renderCalendar() {
 document.addEventListener('DOMContentLoaded', () => {
   loadDashboard();
   initFeedback();
+  loadWordOfTheDay();
 });
 
 
@@ -319,4 +320,130 @@ function renderBadges() {
     
     badgesGrid.appendChild(card);
   });
+}
+
+
+// ============================================
+// WORD OF THE DAY LOGIC
+// ============================================
+
+// Alag words ki list (Aap isme jitne chahein words add kar sakte hain)
+const dailyWords = [
+  { word: "Serendipity", hindi: "सुखद संयोग (Sukhad Sanyog)", meaning: "Finding something good without looking for it.", example: "Meeting my old friend at the airport was pure serendipity." },
+  { word: "Ephemeral", hindi: "क्षणभंगुर (Kshanbhangur)", meaning: "Lasting for a very short time.", example: "The beauty of a rainbow is ephemeral." },
+  { word: "Resilience", hindi: "लचीलापन (Lachilapan)", meaning: "The ability to bounce back from difficulties.", example: "She showed great resilience after losing her job." },
+  { word: "Ineffable", hindi: "अवर्णनीय (Avarnaniya)", meaning: "Too great to be expressed in words.", example: "The view from the mountain was ineffable." },
+  { word: "Euphoria", hindi: "अत्यधिक खुशी (Atyadhik Khushi)", meaning: "A feeling of intense excitement and happiness.", example: "The team felt euphoria after winning the championship." },
+  { word: "Wanderlust", hindi: "घूमने की चाह (Ghumne ki Chaah)", meaning: "A strong desire to travel.", example: "Her wanderlust took her to over 30 countries." },
+  { word: "Petrichor", hindi: "मिट्टी की सोंधी खुशबू (Mitti ki Sondhi Khushbu)", meaning: "The pleasant smell of earth after rain.", example: "The petrichor after the first rain is amazing." },
+  { word: "Eloquence", hindi: "वाक्पटुता (Vakpatuta)", meaning: "Fluent or persuasive speaking or writing.", example: "The leader spoke with great eloquence." },
+  { word: "Solitude", hindi: "एकांत (Ekant)", meaning: "The state of being alone, often peaceful.", example: "He enjoyed the solitude of the early morning." },
+  { word: "Awe", hindi: "विस्मय (Vismay)", meaning: "A feeling of great respect mixed with wonder.", example: "We stood in awe of the beautiful sunset." },
+  { word: "Nostalgia", hindi: "पुरानी यादें (Purani Yaadein)", meaning: "A sentimental longing for the past.", example: "Old songs fill me with nostalgia." },
+  { word: "Altruism", hindi: "परोपकार (Paropkar)", meaning: "Selfless concern for the well-being of others.", example: "Her altruism led her to volunteer at the shelter." },
+  { word: "Clarity", hindi: "स्पष्टता (Spashtata)", meaning: "The quality of being clear.", example: "He explained the concept with great clarity." },
+  { word: "Tenacity", hindi: "दृढ़ता (Dridhta)", meaning: "The quality of holding on firmly.", example: "Her tenacity helped her finish the marathon." },
+  { word: "Authentic", hindi: "प्रामाणिक (Pramanik)", meaning: "Genuine, real, not fake.", example: "This is an authentic Italian restaurant." }
+];
+
+function loadWordOfTheDay() {
+  const container = document.getElementById('wordOfDayCard');
+  if (!container) return;
+
+  // Aaj ki date nikaalo (taaki har din word badle)
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+  
+  // Date ke hisaab se word select karo (same din par same word aayega)
+  const wordIndex = dayOfYear % dailyWords.length;
+  const data = dailyWords[wordIndex];
+
+  container.innerHTML = `
+    <div class="wod-header">
+      <h3 class="wod-word">${data.word}</h3>
+      <button class="wod-audio-btn" onclick="speakWodWord('${data.word}')" title="Sunne ke liye click karein">🔊</button>
+    </div>
+    <p class="wod-hindi">${data.hindi}</p>
+    <p class="wod-meaning"><strong>Meaning:</strong> ${data.meaning}</p>
+    <div class="wod-example">
+      <strong>Example:</strong> "${data.example}"
+    </div>
+  `;
+}
+
+// Pronunciation function
+function speakWodWord(word) {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+
+// ============================================
+// RESET PROGRESS (FACTORY RESET)
+// ============================================
+function resetProgress() {
+  // 1. User se double confirm karo
+  const confirm1 = confirm("⚠️ Kya aap sach mein apna saara progress reset karna chahte hain?\n\nAapke saare Points, Badges aur Streak delete ho jayenge.");
+  
+  if (!confirm1) return; // Agar Cancel daba diya toh ruk jao
+
+  const confirm2 = confirm("🚨 FINAL WARNING!\n\nKya aap bilkul sure hain? Ye action wapas nahi ho sakta.");
+  
+  if (!confirm2) return;
+
+  // 2. LocalStorage se saara data delete karo
+  localStorage.removeItem('points');
+  localStorage.removeItem('quizCount');
+  localStorage.removeItem('streak');
+  localStorage.removeItem('lastPlayed');
+  localStorage.removeItem('playedDates');
+  localStorage.removeItem('dailyChallengeDate');
+  localStorage.removeItem('perfectQuiz');
+  localStorage.removeItem('challengePassed');
+  localStorage.removeItem('lastRankToast');
+
+  // Saare badges unlock data delete karo
+  const badges = ['first_steps', 'century', 'streak_master', 'grammar_guru', 'challenge_champ', 'level_up'];
+  badges.forEach(b => localStorage.removeItem(`badge_${b}`));
+
+  // Saare lessons read/unlock data delete karo
+  for (let i = 1; i <= 30; i++) {
+    localStorage.removeItem(`lesson_${i}_read`);
+    localStorage.removeItem(`lesson_${i}_unlocked`);
+    localStorage.removeItem(`level_${i}_passed`);
+  }
+
+   // 3. Firebase se bhi points delete karo (0 kar do)
+  const currentUser = localStorage.getItem('currentUser');
+  if (currentUser && window.firebaseDB && window.firebaseSet) {
+    const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
+    const userRef = window.firebaseRef(window.firebaseDB, 'users/' + safeEmail);
+
+    window.firebaseSet(userRef, {
+      email: currentUser,
+      points: 0,
+      quizCount: 0,
+      lastUpdated: Date.now()
+    }).then(() => {
+      if (typeof showToast === 'function') {
+        showToast("Tumhara progress successfully reset ho gaya!", "success");
+      }
+      
+      // 1.5 second baad page refresh karo taaki sab 0 dikhe
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    }).catch((err) => {
+      console.error('❌ Reset error:', err);
+      alert("Data reset karne mein error aaya. Kripya Firebase Rules check karein.");
+    });
+  } else {
+    // Agar Firebase nahi hai, toh sirf page refresh karo
+    alert("Progress reset ho gaya (Local storage se).");
+    window.location.reload();
+  }
 }

@@ -3872,3 +3872,340 @@ body {
 .podium-stand-1 {
   box-shadow: 0 -5px 20px rgba(251, 191, 36, 0.5);
 }
+
+
+/* ============================================
+   WORD OF THE DAY
+   ============================================ */
+.word-of-day-card {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.word-of-day-card::before {
+  content: '💡';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 8rem;
+  opacity: 0.1;
+  transform: rotate(15deg);
+}
+
+.wod-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.wod-word {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.wod-audio-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wod-audio-btn:hover {
+  background: white;
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
+.wod-hindi {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.wod-meaning {
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  opacity: 0.9;
+}
+
+.wod-example {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  border-radius: 10px;
+  font-style: italic;
+  font-size: 0.95rem;
+  border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Dark Mode */
+html.dark-mode .word-of-day-card {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 600px) {
+  .word-of-day-card {
+    padding: 1.5rem;
+  }
+  .wod-word {
+    font-size: 1.6rem;
+  }
+  .wod-hindi {
+    font-size: 1.1rem;
+  }
+  .wod-audio-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+}
+
+
+/* ============================================
+   COMMON MISTAKES PAGE
+   ============================================ */
+.mistakes-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.mistakes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mistake-card {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  border: 1px solid rgba(99, 102, 241, 0.08);
+  transition: transform 0.3s;
+}
+
+.mistake-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.mistake-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+}
+
+.wrong-row {
+  background: #fef2f2;
+  border-bottom: 1px solid #fee2e2;
+}
+
+.correct-row {
+  background: #f0fdf4;
+}
+
+.mistake-icon {
+  font-size: 1.2rem;
+  margin-top: 2px;
+}
+
+.mistake-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.wrong-row .mistake-label {
+  color: #dc2626;
+}
+
+.correct-row .mistake-label {
+  color: #16a34a;
+}
+
+.mistake-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin: 0;
+}
+
+.wrong-row .mistake-text {
+  text-decoration: line-through;
+  color: #991b1b;
+}
+
+.mistake-reason {
+  padding: 1.2rem 1.5rem;
+  background: var(--white);
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.6;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.mistake-reason strong {
+  color: var(--primary-dark);
+}
+
+/* Dark Mode */
+html.dark-mode .mistake-card {
+  background: #1e293b;
+  border-color: rgba(129, 140, 248, 0.15);
+}
+
+html.dark-mode .wrong-row {
+  background: rgba(239, 68, 68, 0.1);
+  border-bottom-color: rgba(239, 68, 68, 0.2);
+}
+
+html.dark-mode .correct-row {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+html.dark-mode .mistake-reason {
+  background: #1e293b;
+  border-top-color: #334155;
+}
+
+html.dark-mode .mistake-text {
+  color: #f1f5f9;
+}
+
+html.dark-mode .wrong-row .mistake-text {
+  color: #fca5a5;
+}
+
+
+@media (max-width: 600px) {
+  .mistakes-container {
+    padding: 2rem 1rem;
+  }
+  .mistake-row {
+    padding: 1rem;
+  }
+  .mistake-text {
+    font-size: 1rem;
+  }
+  .mistake-reason {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+
+/* ============================================
+   RESET PROGRESS (DANGER ZONE)
+   ============================================ */
+.danger-zone-card {
+  background: #fff5f5;
+  border: 2px dashed #feb2b2;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-reset-danger {
+  background: #ef4444;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-reset-danger:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+}
+
+/* Dark Mode */
+html.dark-mode .danger-zone-card {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+@media (max-width: 600px) {
+  .danger-zone-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .btn-reset-danger {
+    width: 100%;
+  }
+}
+
+
+/* ============================================
+   NAVBAR CATEGORY HEADERS
+   ============================================ */
+/* Desktop par category headers ko chhipa do */
+.nav-category {
+  display: none;
+}
+
+/* Mobile Menu Polish */
+@media (max-width: 600px) {
+  .nav-links {
+    /* Thoda aur smooth scroll */
+    scroll-behavior: smooth; 
+  }
+  
+  /* Category Headers ki styling */
+  .nav-category {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary); /* Purple color */
+    font-weight: 800;
+    padding: 1.2rem 1.5rem 0.5rem;
+    background: #f8fafc; /* Halka sa grey background */
+    border-bottom: none;
+    pointer-events: none; /* Click na ho sake */
+  }
+
+  /* Category ke neeche wale links ko thoda indent (andar) karo */
+  .nav-category ~ li a {
+    padding-left: 2rem; /* Thoda right shift */
+    font-size: 0.95rem;
+  }
+
+  /* Jab dark mode ho toh category header adjust karein */
+  html.dark-mode .nav-category {
+    background: #0f172a;
+    color: #a5b4fc;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+}
