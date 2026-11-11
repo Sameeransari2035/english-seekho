@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - English Seekho</title>
 
-    <!-- Primary SEO Meta Tags -->
-  <meta name="description" content="Hindi se English seekhne ka sabse aasaan tarika. Grammar padho, quiz khelo, games khelo aur apni English sudharo. Free English learning platform.">
-  <meta name="keywords" content="English seekhna, Hindi se English, English grammar in Hindi, English speaking practice, English quiz, Learn English in Hindi">
+  <!-- Primary SEO Meta Tags -->
+  <meta name="description"
+    content="Hindi se English seekhne ka sabse aasaan tarika. Grammar padho, quiz khelo, games khelo aur apni English sudharo. Free English learning platform.">
+  <meta name="keywords"
+    content="English seekhna, Hindi se English, English grammar in Hindi, English speaking practice, English quiz, Learn English in Hindi">
   <meta name="author" content="English Seekho">
 
   <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
@@ -16,13 +18,15 @@
   <meta property="og:url" content="https://sameeransari2035.github.io/english-seekho/">
   <meta property="og:title" content="English Seekho - Hindi se English Aasaan Tarike Se 🚀">
   <meta property="og:description" content="Grammar padho, quiz khelo, aur apni English sudharo. Bilkul free mein!">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:image"
+    content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="English Seekho - Hindi se English Aasaan Tarike Se 🚀">
   <meta name="twitter:description" content="Grammar padho, quiz khelo, aur apni English sudharo. Bilkul free mein!">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:image"
+    content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,31 +36,31 @@
 
   <!-- Firebase SDK (CDN) -->
   <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  // 👇 Yahan 'get' ko import karna zaroori hai
-  import { getDatabase, ref, onValue, push, get, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    // 👇 Yahan 'get' ko import karna zaroori hai
+    import { getDatabase, ref, onValue, push, get, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
-    authDomain: "english-seekho-v2.firebaseapp.com",
-    databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
-    projectId: "english-seekho-v2",
-    storageBucket: "english-seekho-v2.firebasestorage.app",
-    messagingSenderId: "393175002297",
-    appId: "1:393175002297:web:8ac546459c7fa803917f68"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyA8GI6ny8Z6gUNFirtp_Qs77HbaAWir7Z0",
+      authDomain: "english-seekho-v2.firebaseapp.com",
+      databaseURL: "https://english-seekho-v2-default-rtdb.firebaseio.com",
+      projectId: "english-seekho-v2",
+      storageBucket: "english-seekho-v2.firebasestorage.app",
+      messagingSenderId: "393175002297",
+      appId: "1:393175002297:web:8ac546459c7fa803917f68"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
 
-  // 👇 Sabhi functions ko window par attach karna zaroori hai
-  window.firebaseDB = db;
-  window.firebaseRef = ref;
-  window.firebaseOnValue = onValue;
-  window.firebasePush = push;
-  window.firebaseGet = get;
-  window.firebaseSet = set;  // 👈 Ye line missing thi!
-</script>
+    // 👇 Sabhi functions ko window par attach karna zaroori hai
+    window.firebaseDB = db;
+    window.firebaseRef = ref;
+    window.firebaseOnValue = onValue;
+    window.firebasePush = push;
+    window.firebaseGet = get;
+    window.firebaseSet = set;  // 👈 Ye line missing thi!
+  </script>
   <script src="js/dark-mode.js"></script>
 </head>
 
@@ -70,29 +74,61 @@
       <span></span>
       <span></span>
     </button>
-        <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      
-      <!-- 👇 NAYA: Category Header -->
-      <li class="nav-category">📖 Learn (Seekhein)</li>
-      <li><a href="grammar.html">Grammar</a></li>
-      <li><a href="vocabulary.html">Vocabulary</a></li>
-      <li><a href="reading.html">Reading</a></li>
-      <li><a href="courses.html">Courses</a></li>
-      <li><a href="mistakes.html">Common Mistakes</a></li>
+   <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
 
-      <!-- 👇 NAYA: Category Header -->
-      <li class="nav-category">🎯 Practice (Abhyas)</li>
-      <li><a href="quiz.html">Quiz</a></li>
-      <li><a href="challenge.html">Daily Challenge</a></li>
-            <li><a href="papers.html">Practice Papers</a></li>
-      <li><a href="game.html">Game</a></li>
-      <li><a href="speaking.html">Speaking</a></li>
-      <li><a href="leaderboard.html">Leaderboard</a></li>
+                <!-- 👇 Learn Dropdown -->
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle">📖 Learn ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="grammar.html">Grammar</a></li>
+                        <li><a href="vocabulary.html">Vocabulary</a></li>
+                        <li><a href="reading.html">Reading</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="conversations.html">Conversations</a></li>
+                        <li><a href="mistakes.html">Common Mistakes</a></li>
+                    </ul>
+                </li>
 
-      <!-- Dashboard aur Profile alag rahenge -->
-      <li><a href="dashboard.html">Dashboard</a></li>
-    </ul>
+                <!-- 👇 Practice Dropdown -->
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle">🎯 Practice ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="quiz.html">Quiz</a></li>
+                        <li><a href="challenge.html">Daily Challenge</a></li>
+                        <li><a href="papers.html">Practice Papers</a></li>
+                        <li><a href="listening.html">Listening Test</a></li>
+                        <li><a href="game.html">Word Scramble</a></li>
+                        <!-- 👇 NAYA GAME LINK YAHAN HAI -->
+                        <li><a href="puzzle.html">Word Search</a></li>
+                        <li><a href="speaking.html">Speaking</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="certificate.html">🏆 Certificate</a></li>
+                 <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+
+                <!-- 👇 MOBILE KE LIYE (Ye sirf mobile par dikhenge) -->
+                <li class="nav-category mobile-only">📖 Learn (Seekhein)</li>
+                <li class="mobile-only"><a href="grammar.html">Grammar</a></li>
+                <li class="mobile-only"><a href="vocabulary.html">Vocabulary</a></li>
+                <li class="mobile-only"><a href="reading.html">Reading</a></li>
+                <li class="mobile-only"><a href="courses.html">Courses</a></li>
+                <li class="mobile-only"><a href="conversations.html">Conversations</a></li>
+                <li class="mobile-only"><a href="mistakes.html">Common Mistakes</a></li>
+
+                <li class="nav-category mobile-only">🎯 Practice (Abhyas)</li>
+                <li class="mobile-only"><a href="quiz.html">Quiz</a></li>
+                <li class="mobile-only"><a href="challenge.html">Daily Challenge</a></li>
+                <li class="mobile-only"><a href="papers.html">Practice Papers</a></li>
+                <li class="mobile-only"><a href="listening.html">Listening Test</a></li>
+                <li class="mobile-only"><a href="game.html">Word Scramble</a></li>
+                <li class="mobile-only"><a href="puzzle.html">Word Search</a></li>
+                <li class="mobile-only"><a href="speaking.html">Speaking</a></li>
+              
+            </ul>
+        </ul>
   </nav>
 
   <header class="page-header">
@@ -139,7 +175,7 @@
       </div>
     </section>
 
-        <!-- 👇 NAYA: Word of the Day Section -->
+    <!-- 👇 NAYA: Word of the Day Section -->
     <section class="dash-section">
       <h2>💡 Aaj Ka Shabd (Word of the Day)</h2>
       <div class="word-of-day-card" id="wordOfDayCard">
@@ -161,14 +197,27 @@
     </section>
 
 
-        <!-- 👇 NAYA: Badges Section -->
+    <!-- 👇 NAYA: Badges Section -->
     <section class="dash-section">
       <h2>🏅 Tumhare Badges</h2>
       <div class="badges-grid" id="badgesGrid">
         <!-- Badges yahan JS se aayenge -->
       </div>
     </section>
-    <!-- 👆 NAYA SECTION KHATAM -->
+
+    <!-- 👇 NAYA: Certificate Section -->
+    <section class="dash-section">
+      <h2>🎓 Tumhara Certificate</h2>
+      <div class="certificate-card-dash"
+        style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); padding: 1.5rem; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; color: white;">
+        <div>
+          <h3 style="margin-bottom: 0.5rem;">Course Completion Certificate</h3>
+          <p style="font-size: 0.9rem; opacity: 0.9;">Saare 100 lessons aur Bosses complete karke apna certificate
+            paayein!</p>
+        </div>
+        <a href="certificate.html" class="btn btn-secondary" style="white-space: nowrap;">Dekhein →</a>
+      </div>
+    </section>
 
     <!-- Feedback Section -->
     <section class="dash-section">
@@ -202,13 +251,14 @@
       </div>
     </section>
 
-        <!-- 👇 NAYA: Reset Progress Section -->
+    <!-- 👇 NAYA: Reset Progress Section -->
     <section class="dash-section">
       <h2>⚠️ Danger Zone (Khatra)</h2>
       <div class="danger-zone-card">
         <div>
           <h3 style="color: var(--danger); margin-bottom: 0.5rem;">Reset My Progress</h3>
-          <p style="color: var(--gray); font-size: 0.9rem;">Ye aapke saare Points, Badges, aur Streak ko delete kar dega. Ise wapas nahi laya ja sakta!</p>
+          <p style="color: var(--gray); font-size: 0.9rem;">Ye aapke saare Points, Badges, aur Streak ko delete kar
+            dega. Ise wapas nahi laya ja sakta!</p>
         </div>
         <button class="btn btn-reset-danger" onclick="resetProgress()">🗑️ Reset Karein</button>
       </div>

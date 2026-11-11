@@ -9,6 +9,42 @@ const levels = [
   { name: 'Master', min: 500, max: 1000, icon: '👑' }
 ];
 
+
+// Weekly Reset Logic
+function checkWeeklyReset() {
+  const currentUser = localStorage.getItem('currentUser');
+  if (!currentUser || !window.firebaseDB) return;
+
+  // Pata karo aaj kaunsa din hai (0=Sunday, 1=Monday...)
+  const today = new Date();
+  const dayOfWeek = today.getDay();
+  
+  // Agar Monday hai (ya Monday ke baad hai) aur is hafte reset nahi hua hai
+  const lastResetStr = localStorage.getItem('lastWeeklyReset');
+  const thisMondayStr = getMondayDateString();
+  
+  if (lastResetStr !== thisMondayStr) {
+    // Reset karo
+    const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
+    const userRef = window.firebaseRef(window.firebaseDB, 'users/' + safeEmail);
+    
+    window.firebaseSet(userRef, { weeklyPoints: 0 }).then(() => {
+      localStorage.setItem('lastWeeklyReset', thisMondayStr);
+    });
+  }
+}
+
+function getMondayDateString() {
+  const d = new Date();
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+  return new Date(d.setDate(diff)).toDateString();
+}
+
+// Call it
+checkWeeklyReset();
+
+
 function loadDashboard() {
   const currentUser = localStorage.getItem('currentUser');
   

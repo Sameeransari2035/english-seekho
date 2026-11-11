@@ -282,18 +282,22 @@ function saveProgress(earnedPoints) {
     window.firebaseGet(userRef).then((snapshot) => {
       let fbPoints = 0;
       let fbQuizCount = 0;
+      let fbWeeklyPoints = 0;
+      
       if (snapshot.exists()) {
         const data = snapshot.val();
         fbPoints = data.points || 0;
         fbQuizCount = data.quizCount || 0;
+        fbWeeklyPoints = data.weeklyPoints || 0;
       }
+      
       window.firebaseSet(userRef, {
         points: fbPoints + earnedPoints,
+        weeklyPoints: fbWeeklyPoints + earnedPoints, // 👈 NAYA
         quizCount: fbQuizCount + 1,
         email: currentUser,
         lastUpdated: Date.now()
-      }).then(() => console.log('✅ Points saved to Firebase'))
-        .catch(err => console.error('❌ Firebase save error:', err));
+      });
     });
   }
 }

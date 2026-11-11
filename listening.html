@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listening Test - English Seekho</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/dark-mode.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📚 English Seekho</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+
+                <!-- 👇 Learn Dropdown -->
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle">📖 Learn ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="grammar.html">Grammar</a></li>
+                        <li><a href="vocabulary.html">Vocabulary</a></li>
+                        <li><a href="reading.html">Reading</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="conversations.html">Conversations</a></li>
+                        <li><a href="mistakes.html">Common Mistakes</a></li>
+                    </ul>
+                </li>
+
+                <!-- 👇 Practice Dropdown -->
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle">🎯 Practice ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="quiz.html">Quiz</a></li>
+                        <li><a href="challenge.html">Daily Challenge</a></li>
+                        <li><a href="papers.html">Practice Papers</a></li>
+                        <li><a href="listening.html">Listening Test</a></li>
+                        <li><a href="game.html">Word Scramble</a></li>
+                        <!-- 👇 NAYA GAME LINK YAHAN HAI -->
+                        <li><a href="puzzle.html">Word Search</a></li>
+                        <li><a href="speaking.html">Speaking</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="certificate.html">🏆 Certificate</a></li>
+                 <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+
+                <!-- 👇 MOBILE KE LIYE (Ye sirf mobile par dikhenge) -->
+                <li class="nav-category mobile-only">📖 Learn (Seekhein)</li>
+                <li class="mobile-only"><a href="grammar.html">Grammar</a></li>
+                <li class="mobile-only"><a href="vocabulary.html">Vocabulary</a></li>
+                <li class="mobile-only"><a href="reading.html">Reading</a></li>
+                <li class="mobile-only"><a href="courses.html">Courses</a></li>
+                <li class="mobile-only"><a href="conversations.html">Conversations</a></li>
+                <li class="mobile-only"><a href="mistakes.html">Common Mistakes</a></li>
+
+                <li class="nav-category mobile-only">🎯 Practice (Abhyas)</li>
+                <li class="mobile-only"><a href="quiz.html">Quiz</a></li>
+                <li class="mobile-only"><a href="challenge.html">Daily Challenge</a></li>
+                <li class="mobile-only"><a href="papers.html">Practice Papers</a></li>
+                <li class="mobile-only"><a href="listening.html">Listening Test</a></li>
+                <li class="mobile-only"><a href="game.html">Word Scramble</a></li>
+                <li class="mobile-only"><a href="puzzle.html">Word Search</a></li>
+                <li class="mobile-only"><a href="speaking.html">Speaking</a></li>
+        
+            </ul>
+        </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header" style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);">
+    <h1>🎧 Listening Test</h1>
+    <p>Audio sunein aur sawaalon ke jawab dein!</p>
+  </header>
+
+  <!-- Main Container -->
+  <main class="listening-container">
+
+    <!-- Start Screen -->
+    <div id="listenStartScreen" class="quiz-card" style="text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 4rem; margin-bottom: 1rem;">🎧</div>
+      <h2>Listening Comprehension</h2>
+      <p style="color: var(--gray); margin-bottom: 2rem;">Aapko ek short story sunai jayegi. Dhyan se sunein aur phir sawaalon ke jawab dein.</p>
+      <button id="startListeningBtn" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">▶️ Test Shuru Karein</button>
+    </div>
+
+    <!-- Audio Player Screen -->
+    <div id="listenAudioScreen" style="display: none;">
+      <div class="audio-player-card">
+        <h2>Story Sunein</h2>
+        <p style="color: var(--gray); margin-bottom: 2rem;">Audio ko dhyan se sunein. Aap ise ek baar phir se sun sakte hain.</p>
+        
+        <div class="audio-controls-big">
+          <button id="playStoryBtn" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 3rem;">🔊 Audio Play Karein</button>
+          <button id="replayStoryBtn" class="btn btn-secondary" style="font-size: 1.2rem; padding: 1rem 3rem; display:none;">🔄 Dobara Sunein</button>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <button id="showQuestionsBtn" class="btn btn-whatsapp" style="width: 100%;">Sawaal Dekhein →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Questions Screen -->
+    <div id="listenQuestionsScreen" style="display: none;">
+      <div class="quiz-card">
+        <h2>Comprehension Questions</h2>
+        <div id="listenQuestionsContainer" style="margin-top: 2rem;"></div>
+        
+        <button id="submitListeningBtn" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Answers Check Karein</button>
+      </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="listenResultScreen" class="result-card" style="display: none;">
+      <div class="result-icon">📊</div>
+      <h2>Test Complete!</h2>
+      <p class="result-score">Aapka Score: <strong><span id="listenFinalScore">0</span></strong> / <strong><span id="listenMaxScore">0</span></strong></p>
+      <div class="result-message" id="listenResultMessage"></div>
+      
+      <div class="result-actions">
+        <button class="btn btn-primary" onclick="location.reload()">🔄 Naya Test</button>
+        <a href="dashboard.html" class="btn btn-secondary">📊 Dashboard</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>📚 English Seekho</h3>
+        <p>Hindi se English seekhne ka sabse aasaan tarika.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="grammar.html">Grammar</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#" title="Facebook">📘</a>
+          <a href="#" title="Instagram">📸</a>
+          <a href="#" title="YouTube">🎥</a>
+          <a href="#" title="WhatsApp">💬</a>
+        </div>
+        <p class="footer-tagline">Made with ❤️ for Hindi learners</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 English Seekho | All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/listening.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/nav-updater.js"></script>
+  <script src="js/toast.js"></script>
+</body>
+
+</html>

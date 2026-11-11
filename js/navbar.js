@@ -20,3 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+// ============================================
+// SUPPORT WIDGET TOGGLE
+// ============================================
+function toggleSupportMenu() {
+  const menu = document.getElementById('supportMenu');
+  if (menu) {
+    menu.classList.toggle('active');
+  }
+}
+
+// Agar user menu ke bahar click kare toh menu band ho jaye
+document.addEventListener('click', function(event) {
+  const widget = document.querySelector('.support-widget');
+  const menu = document.getElementById('supportMenu');
+  
+  if (widget && menu && !widget.contains(event.target)) {
+    menu.classList.remove('active');
+  }
+});

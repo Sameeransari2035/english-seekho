@@ -246,20 +246,19 @@ function showResults() {
     const safeEmail = currentUser.replace(/[.#$\[\]]/g, '_');
     const userRef = window.firebaseRef(window.firebaseDB, 'users/' + safeEmail);
 
-    window.firebaseGet(userRef).then((snapshot) => {
+        window.firebaseGet(userRef).then((snapshot) => {
       let fbPoints = 0;
+      let fbWeeklyPoints = 0;
       if (snapshot.exists()) {
         fbPoints = snapshot.val().points || 0;
+        fbWeeklyPoints = snapshot.val().weeklyPoints || 0;
       }
       window.firebaseSet(userRef, {
         points: fbPoints + score,
+        weeklyPoints: fbWeeklyPoints + score, // 👈 NAYA
         email: currentUser,
-        lastChallengeDate: todayStr,  // ✅ naya field
+        lastChallengeDate: todayStr,
         lastUpdated: Date.now()
-      }).then(() => {
-        console.log('✅ Challenge result saved to Firebase');
-      }).catch((err) => {
-        console.error('❌ Firebase save error:', err);
       });
     });
   }
