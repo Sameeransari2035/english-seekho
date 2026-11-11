@@ -4667,3 +4667,129 @@ html.dark-mode .icon-box {
 html.dark-mode .boss-modal-content {
   background: #1e293b;
 }
+
+/* ============================================
+   QUIZ LEVEL SELECTION
+   ============================================ */
+.level-selection-screen {
+  background: var(--white);
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.quiz-level-card {
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.quiz-level-card:hover {
+  background: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sm);
+}
+
+.level-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-level-card h3 {
+  font-size: 1.1rem;
+  color: var(--dark);
+  margin-bottom: 0.3rem;
+}
+
+.quiz-level-card p {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* Dark Mode */
+html.dark-mode .level-selection-screen {
+  background: #1e293b;
+}
+
+html.dark-mode .quiz-level-card {
+  background: #0f172a;
+}
+
+html.dark-mode .quiz-level-card:hover {
+  background: #1e293b;
+}
+
+html.dark-mode .quiz-level-card h3 {
+  color: #f1f5f9;
+}
+
+@media (max-width: 600px) {
+  .level-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   PRACTICE PAPERS (MODEL TEST)
+   ============================================ */
+.paper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  background: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.timer {
+  font-size: 1.2rem;
+  color: var(--primary-dark);
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+}
+
+/* Selected option styling */
+.option-btn.selected {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--primary);
+  font-weight: 600;
+}
+
+/* Dark Mode */
+html.dark-mode .paper-header {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+html.dark-mode .timer {
+  background: rgba(129, 140, 248, 0.15);
+  color: #a5b4fc;
+}
+html.dark-mode .option-btn.selected {
+  background: rgba(129, 140, 248, 0.25);
+  border-color: #818cf8;
+}
+
+@media (max-width: 600px) {
+  .paper-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

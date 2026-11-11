@@ -1,28 +1,35 @@
 // ============================================
 // QUIZ QUESTIONS
 // ============================================
-const quizQuestions = [
-  { question: "Noun kya hota hai?", options: ["Kisi kaam ka naam", "Kisi vyakti, jagah ya cheez ka naam", "Kisi ki visheshta", "Kisi ka bhaav"], correct: 1, explanation: "Noun wo shabd hai jo vyakti, jagah, cheez ya bhaav ka naam batata hai." },
+const quizQuestions = {
+  level1: [{ question: "Noun kya hota hai?", options: ["Kisi kaam ka naam", "Kisi vyakti, jagah ya cheez ka naam", "Kisi ki visheshta", "Kisi ka bhaav"], correct: 1, explanation: "Noun wo shabd hai jo vyakti, jagah, cheez ya bhaav ka naam batata hai." },
   { question: "Inme se 'Proper Noun' kaunsa hai?", options: ["boy", "city", "Delhi", "book"], correct: 2, explanation: "Delhi ek khaas jagah ka naam hai, isliye ye Proper Noun hai." },
   { question: "Sahi pronoun chuno: '___ is my sister.'", options: ["He", "She", "It", "They"], correct: 1, explanation: "Sister ke liye 'She' pronoun use hota hai." },
   { question: "Sahi article chuno: 'I ate ___ apple.'", options: ["a", "an", "the", "no article"], correct: 1, explanation: "'Apple' vowel sound se shuru hota hai, isliye 'an' lagega." },
-  { question: "Sahi verb chuno: 'She ___ to school every day.'", options: ["go", "goes", "going", "gone"], correct: 1, explanation: "He/She/It ke saath verb mein 's' ya 'es' lagta hai — 'goes'." },
-  { question: "Sahi verb chuno: 'She ___ a beautiful song.'", options: ["sing", "sings", "singing", "sang"], correct: 1, explanation: "Present tense mein He/She/It ke saath verb mein 's' lagta hai." },
+  { question: "Sahi verb chuno: 'She ___ to school every day.'", options: ["go", "goes", "going", "gone"], correct: 1, explanation: "He/She/It ke saath verb mein 's' ya 'es' lagta hai — 'goes'." },],
+  level2: [ { question: "Sahi verb chuno: 'She ___ a beautiful song.'", options: ["sing", "sings", "singing", "sang"], correct: 1, explanation: "Present tense mein He/She/It ke saath verb mein 's' lagta hai." },
   { question: "Sahi past tense chuno: 'I ___ to the market yesterday.'", options: ["go", "goes", "went", "gone"], correct: 2, explanation: "'Yesterday' past time batata hai, isliye 'went' lagega." },
   { question: "Sahi preposition chuno: 'The cat is ___ the table.'", options: ["in", "on", "at", "for"], correct: 1, explanation: "Cheez ke upar hone ke liye 'on' use hota hai." },
   { question: "Inme se kaunsa adjective hai?", options: ["Run", "Beautiful", "Quickly", "Happiness"], correct: 1, explanation: "Beautiful ek adjective hai." },
   { question: "Sahi future tense chuno: 'I ___ help you tomorrow.'", options: ["will", "am", "did", "was"], correct: 0, explanation: "Future ke liye 'will' use hota hai." },
-  { question: "Sahi conjunction chuno: 'I like tea ___ coffee.'", options: ["but", "and", "because", "or"], correct: 1, explanation: "Do cheezon ko jodne ke liye 'and' use hota hai." },
+  ],
+  level3: [{ question: "Sahi conjunction chuno: 'I like tea ___ coffee.'", options: ["but", "and", "because", "or"], correct: 1, explanation: "Do cheezon ko jodne ke liye 'and' use hota hai." },
   { question: "Sahi conjunction chuno: 'He is rich ___ not happy.'", options: ["and", "but", "so", "because"], correct: 1, explanation: "Ulta ya virudh baat batane ke liye 'but' use hota hai." },
   { question: "Inme se interjection kaunsa hai?", options: ["Run", "Wow!", "Beautiful", "Quickly"], correct: 1, explanation: "Wow! ek interjection hai." },
   { question: "Passive voice chuno:", options: ["Ram eats an apple.", "An apple is eaten by Ram.", "Ram is eating an apple.", "Ram will eat an apple."], correct: 1, explanation: "Passive voice mein object pehle aata hai aur 'by' use hota hai." },
   { question: "Indirect speech chuno:", options: ["He said, 'I am happy.'", "He said that he was happy.", "He says, 'I am happy.'", "He said, I am happy."], correct: 1, explanation: "Indirect speech mein quotes nahi hote aur tense change hota hai." },
-  { question: "Sentence ke end mein kya lagta hai?", options: ["Comma (,)", "Period (.)", "Exclamation (!)", "Question Mark (?)"], correct: 1, explanation: "Statement ke end mein period (.) lagta hai." },
+  ],
+  level4: [ { question: "Sentence ke end mein kya lagta hai?", options: ["Comma (,)", "Period (.)", "Exclamation (!)", "Question Mark (?)"], correct: 1, explanation: "Statement ke end mein period (.) lagta hai." },
   { question: "Sahi punctuation chuno: 'How are you___'", options: [".", ",", "?", "!"], correct: 2, explanation: "Sawaal ke end mein question mark (?) lagta hai." },
   { question: "Sahi article chuno: 'He is ___ honest man.'", options: ["a", "an", "the", "no article"], correct: 1, explanation: "'Honest' vowel sound (o) se shuru hota hai, isliye 'an' lagega." },
   { question: "Sahi preposition chuno: 'She is good ___ mathematics.'", options: ["in", "at", "on", "for"], correct: 1, explanation: "'Good at' ek fixed phrase hai." },
   { question: "Sahi verb chuno: 'He ___ his homework before dinner.'", options: ["do", "does", "did", "done"], correct: 2, explanation: "Past tense mein 'did' use hota hai." }
-];
+ ]
+};
+
+
+
+
 
 // ============================================
 // STATE & DOM ELEMENTS
@@ -81,6 +88,40 @@ function initQuiz() {
     return { ...q, options: shuffledOptions, correct: newCorrectIndex };
   });
 
+  loadQuestion();
+}
+
+// ============================================
+// LEVEL QUIZ LOGIC
+// ============================================
+function startLevelQuiz(level) {
+  // 1. Level selection screen hide karo
+  document.getElementById('levelSelection').style.display = 'none';
+  document.getElementById('quizProgressContainer').style.display = 'block';
+  document.getElementById('quizCard').style.display = 'block';
+
+  // 2. Us level ke questions uthao
+  let levelQuestions = [];
+  if (level === 1) levelQuestions = quizQuestions.level1;
+  else if (level === 2) levelQuestions = quizQuestions.level2;
+  else if (level === 3) levelQuestions = quizQuestions.level3;
+  else if (level === 4) levelQuestions = quizQuestions.level4;
+
+  // 3. Game state reset karo
+  currentQuestionIndex = 0;
+  score = 0;
+  scoreDisplay.textContent = score;
+  totalQSpan.textContent = levelQuestions.length;
+
+  // 4. Questions shuffle karo (Options ke saath)
+  shuffledQuestions = shuffleArray(levelQuestions).map(q => {
+    const originalCorrectText = q.options[q.correct];
+    const shuffledOptions = shuffleArray(q.options);
+    const newCorrectIndex = shuffledOptions.indexOf(originalCorrectText);
+    return { ...q, options: shuffledOptions, correct: newCorrectIndex };
+  });
+
+  // 5. Pehla question load karo
   loadQuestion();
 }
 
@@ -262,28 +303,25 @@ function saveProgress(earnedPoints) {
 // ============================================
 function restartQuiz() {
   resultCard.style.display = 'none';
-  quizCard.style.display = 'block';
-  initQuiz();
+  document.getElementById('levelSelection').style.display = 'block';
+  document.getElementById('quizProgressContainer').style.display = 'none';
+  document.getElementById('quizCard').style.display = 'none';
 }
 
 // ============================================
-// START
+// START (Initial Load)
 // ============================================
-initQuiz();
+document.addEventListener('DOMContentLoaded', () => {
+  // Shuru mein login check karo
+  if (!localStorage.getItem('currentUser')) {
+    alert("⚠️ Quiz khelne ke liye pehle Login karein!");
+    window.location.href = 'login.html';
+    return;
+  }
 
-
-// ============================================
-// WHATSAPP SHARE LOGIC (QUIZ)
-// ============================================
-function shareScore() {
-  const finalScore = document.getElementById('finalScore').textContent;
-  const maxScore = document.getElementById('maxScore').textContent;
-  
-  // Aapki website ka link
-  const websiteUrl = "https://sameeransari2035.github.io/english-seekho/";
-  
-  const message = `🚀 Maine English Seekho par Quiz khela aur ${finalScore}/${maxScore} points kamaye!\n\nTum bhi apni English test karo aur mujhse aage nikalne ki koshish karo:\n${websiteUrl}`;
-  
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-  window.open(whatsappUrl, '_blank');
-}
+  // Baaki screens ko chhipa kar sirf Level Selection dikhao
+  document.getElementById('levelSelection').style.display = 'block';
+  document.getElementById('quizProgressContainer').style.display = 'none';
+  document.getElementById('quizCard').style.display = 'none';
+  document.getElementById('resultCard').style.display = 'none';
+});

@@ -97,6 +97,7 @@
       <li class="nav-category">🎯 Practice (Abhyas)</li>
       <li><a href="quiz.html">Quiz</a></li>
       <li><a href="challenge.html">Daily Challenge</a></li>
+            <li><a href="papers.html">Practice Papers</a></li>
       <li><a href="game.html">Game</a></li>
       <li><a href="speaking.html">Speaking</a></li>
       <li><a href="leaderboard.html">Leaderboard</a></li>
@@ -111,11 +112,47 @@
     <p>Apna gyaan test karo aur points kamao!</p>
   </header>
 
-  <!-- Quiz Container -->
+    <!-- Quiz Container -->
   <main class="quiz-container">
 
+    <!-- 👇 NAYA: Level Selection Screen -->
+    <div id="levelSelection" class="level-selection-screen">
+      <h2 style="text-align: center; margin-bottom: 2rem; color: var(--dark);">Apna Level Chunein 🎯</h2>
+      
+      <div class="level-grid">
+        <div class="level-card quiz-level-card" onclick="startLevelQuiz(1)">
+          <div class="level-icon">🌱</div>
+          <h3>Beginner</h3>
+          <p>Nouns, Pronouns, Articles</p>
+        </div>
+        
+        <div class="level-card quiz-level-card" onclick="startLevelQuiz(2)">
+          <div class="level-icon">🚀</div>
+          <h3>Intermediate</h3>
+          <p>Tenses, Prepositions</p>
+        </div>
+        
+        <div class="level-card quiz-level-card" onclick="startLevelQuiz(3)">
+          <div class="level-icon">⭐</div>
+          <h3>Advanced</h3>
+          <p>Clauses, Passives, Idioms</p>
+        </div>
+        
+        <div class="level-card quiz-level-card" onclick="startLevelQuiz(4)">
+          <div class="level-icon">👑</div>
+          <h3>Master</h3>
+          <p>Mixed Grammar Test</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Bar (Shuru mein hidden rahega) -->
+    <div class="quiz-progress" id="quizProgressContainer" style="display: none;">
+      <!-- ... aapka purana progress bar code ... -->
+
     <!-- Progress Bar -->
-    <div class="quiz-progress">
+    <    <!-- Progress Bar -->
+    <div class="quiz-progress" id="quizProgressContainer" style="display: none;">
       <div class="progress-info">
         <span>Question <span id="currentQ">1</span> / <span id="totalQ">5</span></span>
         <span>⭐ <span id="scoreDisplay">0</span> points</span>
