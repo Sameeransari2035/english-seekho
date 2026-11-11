@@ -2,12 +2,12 @@
 // LEARNING PATH DATA
 // ============================================
 const pathData = [
-    {
-   level: 1,
+  {
+    level: 1,
     name: "Beginner",
     icon: "🌱",
     color: "#10b981",
-    lessons: Array.from({length: 25}, (_, i) => i + 1), // Lessons 1 se 25
+    lessons: Array.from({length: 25}, (_, i) => i + 1), // Lessons 1 to 25
     boss: {
       title: "Beginner Boss",
       icon: "👾",
@@ -25,14 +25,15 @@ const pathData = [
     name: "Intermediate",
     icon: "🚀",
     color: "#6366f1",
-    lessons: Array.from({length: 25}, (_, i) => i + 26), // Lessons 26 se 50
+    lessons: Array.from({length: 25}, (_, i) => i + 26), // Lessons 26 to 50
     boss: {
       title: "Intermediate Boss",
       icon: "👹",
       questions: [
         { q: "Sahi past tense: 'I ___ yesterday.'", options: ["go", "goes", "went", "gone"], correct: 2 },
         { q: "Sahi future: 'I ___ help you.'", options: ["will", "am", "did", "was"], correct: 0 },
-        { q: "Sahi preposition: 'Cat is ___ table.'", options: ["in", "on", "at", "for"], correct: 1 }
+        { q: "Sahi preposition: 'Cat is ___ table.'", options: ["in", "on", "at", "for"], correct: 1 },
+        { q: "Present Continuous ka structure kya hai?", options: ["Subject + Verb", "Subject + am/is/are + Verb+ing", "Subject + has/have + Verb", "Subject + will + Verb"], correct: 1 }
       ]
     }
   },
@@ -41,30 +42,31 @@ const pathData = [
     name: "Advanced",
     icon: "⭐",
     color: "#f59e0b",
-    lessons: Array.from({length: 25}, (_, i) => i + 51), // Lessons 51 se 75
+    lessons: Array.from({length: 25}, (_, i) => i + 51), // Lessons 51 to 75
     boss: {
       title: "Advanced Boss",
       icon: "🐉",
       questions: [
         { q: "Adjective kaunsa hai?", options: ["Run", "Beautiful", "Quickly", "Happy"], correct: 1 },
         { q: "Conjunction: 'Tea ___ coffee.'", options: ["but", "and", "because", "or"], correct: 1 },
-        { q: "Interjection kaunsa hai?", options: ["Run", "Wow!", "Beautiful", "Quickly"], correct: 1 }
+        { q: "Interjection kaunsa hai?", options: ["Run", "Wow!", "Beautiful", "Quickly"], correct: 1 },
+        { q: "Passive voice chuno:", options: ["Ram eats an apple", "An apple is eaten by Ram", "Ram is eating an apple", "Ram will eat an apple"], correct: 1 }
       ]
     }
   },
   {
-   level: 4,
+    level: 4,
     name: "Master",
     icon: "👑",
     color: "#ec4899",
-    lessons: Array.from({length: 25}, (_, i) => i + 76), // Lessons 76 se 100
+    lessons: Array.from({length: 25}, (_, i) => i + 76), // Lessons 76 to 100
     boss: {
       title: "Master Boss",
       icon: "👺",
       questions: [
-        { q: "Passive voice chuno:", options: ["Ram eats apple", "Apple is eaten by Ram", "Ram is eating", "Ram will eat"], correct: 1 },
         { q: "Indirect speech:", options: ["He said 'I am happy'", "He said that he was happy", "He says 'I am happy'", "He said, I am happy"], correct: 1 },
-        { q: "Sahi punctuation: 'How are you___'", options: [".", ",", "?", "!"], correct: 2 }
+        { q: "Sahi punctuation: 'How are you___'", options: [".", ",", "?", "!"], correct: 2 },
+        { q: "Third Conditional ka structure:", options: ["If + present, will", "If + past, would", "If + had + 3rd form, would have + 3rd form", "If + present, present"], correct: 2 }
       ]
     }
   }
@@ -82,10 +84,10 @@ let bossScore = 0;
 // ============================================
 function renderPath() {
   const wrapper = document.getElementById('pathWrapper');
+  if (!wrapper) return;
   wrapper.innerHTML = '';
 
   pathData.forEach((level, index) => {
-    // Check karo ki level unlocked hai ya nahi
     const isUnlocked = isLevelUnlocked(level.level);
     const isPassed = isLevelPassed(level.level);
 
@@ -106,17 +108,21 @@ function renderPath() {
     `;
 
     // Lessons
-        let lessonsHTML = '<div class="level-lessons">';
+    let lessonsHTML = '<div class="level-lessons">';
     level.lessons.forEach((lessonNum, index) => {
       const isLessonRead = localStorage.getItem(`lesson_${lessonNum}_read`) === 'true';
-      const displayNum = index + 1; // 👈 Display ke liye 1, 2, 3...
+      // Yahan displayNum ab actual lesson number hoga (jaise 26)
       
+ const clickAction = !isUnlocked 
+        ? `onclick="event.preventDefault(); if(typeof showToast === 'function') showToast('🔒 Pehle pichhle level ka Boss harayein!', 'warning');"` 
+        : '';
+
       lessonsHTML += `
         <a href="lesson.html?lesson=${lessonNum}" 
            class="path-lesson ${isLessonRead ? 'done' : ''} ${!isUnlocked ? 'disabled' : ''}"
            onclick="${!isUnlocked ? 'event.preventDefault()' : ''}">
-          <span class="path-lesson-num">${displayNum}</span>
-          <span class="path-lesson-title">Lesson ${displayNum}</span>
+          <span class="path-lesson-num">${lessonNum}</span>
+          <span class="path-lesson-title">Lesson ${lessonNum}</span>
           ${isLessonRead ? '<span class="path-check">✅</span>' : ''}
         </a>
       `;
@@ -134,7 +140,7 @@ function renderPath() {
           <span class="boss-icon">${level.boss.icon}</span>
           <div>
             <h3>${level.boss.title}</h3>
-            <p>${allLessonsRead ? 'Saare lessons padh liye! Boss ko harayo!' : 'Pehle saare lessons padho.'}</p>
+            <p>${allLessonsRead ? 'Saare lessons padh liye! Boss ko harayo!' : `Boss unlock karne ke liye saare ${level.lessons.length} lessons padhein.`}</p>
           </div>
         </div>
         <button class="btn btn-primary boss-btn" 
@@ -187,11 +193,9 @@ function startBoss(levelNum) {
 }
 
 function showBossModal(level) {
-  // Purana modal hatao
   const oldModal = document.getElementById('bossModal');
   if (oldModal) oldModal.remove();
 
-  // Naya modal banao
   const modal = document.createElement('div');
   modal.id = 'bossModal';
   modal.className = 'boss-modal';
@@ -209,6 +213,12 @@ function showBossModal(level) {
   `;
   document.body.appendChild(modal);
 
+  // 👇 NAYA CODE: Popup khulte hi screen ko center mein le aao
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  // 👇 NAYA CODE: Peeche ka page scroll hona band karo
+  document.body.style.overflow = 'hidden';
+
   renderBossQuestion();
 }
 
@@ -218,7 +228,6 @@ function renderBossQuestion() {
 
   const q = window.bossQuestions[bossQuestionIndex];
   if (!q) {
-    // Boss fight khatam
     endBossFight();
     return;
   }
@@ -267,7 +276,6 @@ function endBossFight() {
   const modalContent = document.querySelector('.boss-modal-content');
   
   if (percentage >= 66) { // 2 out of 3 correct = pass
-    // Passed!
     localStorage.setItem(`level_${currentBossLevel}_passed`, 'true');
     
     modalContent.innerHTML = `
@@ -280,12 +288,10 @@ function endBossFight() {
       </div>
     `;
 
-    // Confetti
     if (typeof confetti === 'function') {
       confetti({ particleCount: 200, spread: 90, origin: { y: 0.6 } });
     }
   } else {
-    // Failed
     modalContent.innerHTML = `
       <div class="boss-result lose">
         <div class="boss-result-icon">💀</div>
@@ -300,6 +306,10 @@ function endBossFight() {
 function closeBossModal() {
   const modal = document.getElementById('bossModal');
   if (modal) modal.remove();
+  
+  // 👇 NAYA CODE: Page scroll wapas chalu karo
+  document.body.style.overflow = 'auto';
+
   renderPath(); // Path refresh karo
 }
 

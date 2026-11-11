@@ -4597,3 +4597,73 @@ html.dark-mode .icon-box {
     display: none !important;
   }
 }
+
+/* ============================================
+   LESSON PAGE NAVIGATION BUTTONS
+   ============================================ */
+.lesson-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.lesson-nav-buttons .btn {
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .lesson-nav-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .lesson-nav-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   BOSS MODAL (FIXED & CENTERED)
+   ============================================ */
+.boss-modal {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw; /* Poori screen ki width */
+  height: 100vh; /* Poori screen ki height */
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99999; /* Navbar se bhi upar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(5px); /* Peeche ka background thoda blur hoga */
+  /* Animation ke liye */
+  animation: fadeIn 0.3s ease-out;
+}
+
+.boss-modal-content {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh; /* Screen chhoti ho toh andar scroll ho sake */
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+html.dark-mode .boss-modal-content {
+  background: #1e293b;
+}
